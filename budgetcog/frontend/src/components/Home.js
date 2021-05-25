@@ -1,5 +1,4 @@
 import React from 'react'
-import phone from '../../static/frontend/images/phone.png'
 
 const Home = () => {
     return (
@@ -10,7 +9,7 @@ const Home = () => {
 
                     </div>
                     <div className="col-md-6">
-                        <img src={require('../../static/frontend/images/phone.png')} />
+                        <h1>Text here</h1>
                     </div>
                 </div>
             </div>
