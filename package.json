@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./leadmanager/frontend/src/index.js -o ./leadmanager/frontend/static/frontend/",
-    "build": "webpack --mode production ./leadmanager/frontend/src/index.js -o ./leadmanager/frontend/static/frontend/"
+    "dev": "webpack --mode development --watch ./budgetcog/frontend/src/index.js -o ./budgetcog/frontend/static/frontend/",
+    "build": "webpack --mode production ./budgetcog/frontend/src/index.js -o ./budgetcog/frontend/static/frontend/"
   },
   "keywords": [],
   "author": "",
