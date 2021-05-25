@@ -1,5 +1,5 @@
 {
-  "name": "lead-manager",
+  "name": "budgetcog",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,17 +20,10 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "prop-types": "^15.7.2",
+    "@apollo/client": "^3.3.19",
+    "graphql": "^15.5.0",
     "react": "^17.0.2",
-    "react-alert": "^7.0.2",
-    "react-alert-template-basic": "^1.0.0",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.3",
-    "react-router-dom": "^5.2.0",
-    "react-transition-group": "^4.4.1",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0"
+    "react-router-dom": "^5.2.0"
   }
 }
