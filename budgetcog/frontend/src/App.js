@@ -1,12 +1,12 @@
 import React from 'react';
 import Home from './components/Home';
-import GetUsers from './components/GetUsers';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div>
       <Home />
-      <GetUsers />
+      <Dashboard />
     </div>
   );
 }
