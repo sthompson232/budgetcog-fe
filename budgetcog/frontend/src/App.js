@@ -9,18 +9,18 @@ import {
 import { onError } from '@apollo/client/link/error';
 import GetUsers from './components/GetUsers';
 
-const errorLink = onError(({ graphqlErrors, networkError}) => {
+const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
-    graphqlErrors.map(({message, location, path}) => {
-      alert(`GraphQL error ${message} at ${location}. Path is ${path}`)
-    })
+    graphqlErrors.map(({ message, location, path }) => {
+      alert(`Graphql error ${message}`);
+    });
   }
 });
 
 const link = from([
   errorLink,
   new HttpLink({
-    uri: "http://localhost:8000/graphql",
+    uri: "http://localhost:8000/graphql/",
     fetchOptions: {
       mode: 'no-cors',
     },

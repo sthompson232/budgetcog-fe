@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'graphql_auth',
     'django_filters',
 
+    'api',
     'users',
     'frontend',
 ]
@@ -132,7 +133,7 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'users.User'
 
 GRAPHENE = {
-    'SCHEMA' : 'users.schema.schema',
+    'SCHEMA' : 'api.schema.schema',
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
     ],
