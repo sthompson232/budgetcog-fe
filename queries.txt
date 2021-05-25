@@ -1,0 +1,77 @@
+query {
+    users {
+        edges {
+            node {
+                email
+            }
+        }
+    }
+}
+
+query {
+    me {
+        email
+    }
+}
+
+mutation {
+    register(
+        email: "email@email.com",
+        password1: "123456789",
+        password2: "123456789"
+    ) {
+        success,
+        errors,
+        token,
+        refreshToken,
+    }
+}
+
+mutation {
+    verifyAccount(token: "f34fhuji34e89fijed9f")
+    {
+        success
+        errors
+    }
+}
+
+mutation {
+    tokenAuth(email: "email@email.com", password: "1234") {
+        success,
+        errors,
+        token,
+        refreshToken
+        user {
+            email
+        }
+    }
+}
+
+mutation {
+    updateAccount(email: "email@email.com")
+    {
+        success
+        errors
+    }
+}
+
+mutation {
+    resendActivationEmail(email: "email@email.com") {
+        errors
+    }
+}
+
+mutation {
+    sendPasswordResetEmail(email: "email@email.com") {
+        success
+        errors
+    }
+}
+
+mutation {
+    passwordReset(token: "3n4fiouj0-3kd92", 
+    newPassword1: "1234",
+    newPassword2: "1234){
+        success
+    }
+}

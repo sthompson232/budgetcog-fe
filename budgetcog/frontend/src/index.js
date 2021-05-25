@@ -29,9 +29,6 @@ const link = from([
   new HttpLink({
     credentials: 'same-origin',
     uri: "http://localhost:8000/graphql/",
-    fetchOptions: {
-      mode: 'no-cors',
-    },
   }),
 ]);
 
