@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Login from './components/Login';
+import Register from './components/Register';
 import {
   Route,
   BrowserRouter as Router,
@@ -15,20 +17,19 @@ import {
 } from "@apollo/client";
 import { onError } from '@apollo/client/link/error';
 import { MuiThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
-import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 
 // MATERIAL UI THEME
 let theme = createMuiTheme({
   palette: {
     primary: {
-      main: red[500],
+      main: "#ff0000"
     },
     secondary: {
       main: blue[500],
     },
     white: {
-      main: red[50],
+      main: "#ffffff",
     },
   },
   typography: {
@@ -37,7 +38,8 @@ let theme = createMuiTheme({
    "fontWeightLight": 300,
    "fontWeightRegular": 400,
    "fontWeightMedium": 500
-  }
+  },
+  spacing: 8,
 });
 
 theme = responsiveFontSizes(theme);
@@ -72,6 +74,8 @@ ReactDOM.render(
         <React.StrictMode>
           <Switch>
             <Route exact path="/" component={App} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </React.StrictMode>
       </Router>

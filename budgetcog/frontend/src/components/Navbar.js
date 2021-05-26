@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles, AppBar, Button, Typography, Toolbar } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
     cog: {
-        width: 20, 
+        [theme.breakpoints.up('xs')]: {
+            width: 16
+        },
+        [theme.breakpoints.up('sm')]: {
+            width: 20
+        }
     },
     appbar: {
         background: "none",
@@ -17,7 +23,14 @@ const useStyles = makeStyles((theme) => ({
     button: {
         borderRadius: 5,
         borderColor: "white",
-        color: "white"
+        textDecoration: "none",
+        color: "#ffffff",
+        [theme.breakpoints.up('sm')]: {
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 35,
+        paddingRight: 35,
+        }
     },
     appbarWrapper: {
         width: '95%',
@@ -31,8 +44,8 @@ const Navbar = () => {
     <div>
         <AppBar className={classes.appbar} elevation={0}>
             <Toolbar className={classes.appbarWrapper}>
-                <Typography variant="h4" position="fixed" className={classes.logo}>BudgetC<img className={classes.cog} src="../../static/frontend/images/cog.png"/>g</Typography>
-                <Button variant="outlined" className={classes.button}>Login</Button>
+                <Typography variant="h4" className={classes.logo}>BudgetC<img className={classes.cog} src="../../static/frontend/images/cog.png"/>g</Typography>
+                <Link to="/login"><Button variant="outlined" className={classes.button}>Login</Button></Link>
             </Toolbar>
         </AppBar>
     </div>
