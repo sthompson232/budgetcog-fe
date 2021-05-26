@@ -26,11 +26,14 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: blue[500],
-    }
+    },
+    white: {
+      main: red[50],
+    },
   },
   typography: {
    "fontFamily": `'Montserrat', sans-serif`,
-   "fontSize": 14,
+   "fontSize": 15,
    "fontWeightLight": 300,
    "fontWeightRegular": 400,
    "fontWeightMedium": 500
