@@ -4,7 +4,7 @@ import GetUsers from './GetUsers';
 const Dashboard = () => {
     return (
         <div>
-            <GetUsers />
+            {/* <GetUsers /> */}
         </div>
     )
 }

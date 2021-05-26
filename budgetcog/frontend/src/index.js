@@ -14,8 +14,30 @@ import {
   from 
 } from "@apollo/client";
 import { onError } from '@apollo/client/link/error';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import red from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
 
+// MATERIAL UI THEME
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: red[500],
+    },
+    secondary: {
+      main: blue[500],
+    }
+  },
+  typography: {
+   "fontFamily": `'Montserrat', sans-serif`,
+   "fontSize": 14,
+   "fontWeightLight": 300,
+   "fontWeightRegular": 400,
+   "fontWeightMedium": 500
+  }
+});
 
+// GRAPHQL APOLLO CONFIG
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
     graphqlErrors.map(({ message, location, path }) => {
@@ -39,13 +61,15 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <Router>
-      <React.StrictMode>
-        <Switch>
-          <Route exact path="/" component={App} />
-        </Switch>
-      </React.StrictMode>
-    </Router>
-  </ApolloProvider>,
+  <MuiThemeProvider theme={theme}>
+    <ApolloProvider client={client}>
+      <Router>
+        <React.StrictMode>
+          <Switch>
+            <Route exact path="/" component={App} />
+          </Switch>
+        </React.StrictMode>
+      </Router>
+    </ApolloProvider>
+  </MuiThemeProvider>,
   document.getElementById('root'));
