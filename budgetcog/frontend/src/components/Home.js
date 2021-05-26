@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage: "url('../../static/frontend/images/backdrop.png')",
         backgroundRepeat: "no-repeat",
         backgroundSize:"cover",
-        backgroundPositionX: "center",
+        backgroundPositionX: "right",
         backgroundPositionY: "bottom"
     },
     imageVector: {
@@ -35,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
     body: {
         paddingTop: 20,
         paddingBottom: 20
+    },
+    centerText: {
+        [theme.breakpoints.down('sm')]: {
+            textAlign: 'center'
+        }
     }
 }));
 
@@ -53,7 +58,7 @@ const Home = () => {
                     <Grid container>
                         <Grid container item sm={12} md={5} spacing={3}>
                             <div className={classes.heroTextWrapper}>
-                                <div>
+                                <div className={classes.centerText}>
                                     <Typography variant="h3" style={{ fontWeight: 700 }}>Save <span className={classes.colorText}>smarter</span> with BudgetCog</Typography>
                                     <Typography variant="h6" className={classes.body}>Use BudgetCog to manage and track your monthly expenses all in one place</Typography>
                                     <Button variant="contained" color="primary">Register</Button>
