@@ -14,12 +14,12 @@ import {
   from 
 } from "@apollo/client";
 import { onError } from '@apollo/client/link/error';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 
 // MATERIAL UI THEME
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     primary: {
       main: red[500],
@@ -39,6 +39,8 @@ const theme = createMuiTheme({
    "fontWeightMedium": 500
   }
 });
+
+theme = responsiveFontSizes(theme);
 
 // GRAPHQL APOLLO CONFIG
 const errorLink = onError(({ graphqlErrors, networkError }) => {
