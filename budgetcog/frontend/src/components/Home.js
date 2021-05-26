@@ -6,7 +6,7 @@ const Home = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">
-
+                        <img src="../../static/frontend/images/phone.png" />
                     </div>
                     <div className="col-md-6">
                         <h1>Text here</h1>
