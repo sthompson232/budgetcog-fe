@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LOGIN } from '../graphql/Mutations';
+import { useMutation } from '@apollo/client';
 import Navbar from './Navbar';
 import { 
     Avatar, 
     Button, 
     CssBaseline, 
     TextField, 
-    FormControlLabel, 
-    Checkbox, 
     Grid, 
     Typography, 
     Container, 
@@ -64,6 +64,24 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
     const classes = useStyles();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const [tokenAuth, { error }] = useMutation(LOGIN);
+
+    const login = () => {
+      tokenAuth({
+        variables: {
+          email: email,
+          password: password
+        }
+      })
+
+      if (error) {
+        console.log(error);
+      }
+    };
+
     return (
         <CssBaseline>
         <Navbar />
@@ -92,6 +110,9 @@ const Login = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(e) => {
+              setEmail(e.target.value)
+            }}
           />
           <TextField
             variant="outlined"
@@ -103,10 +124,9 @@ const Login = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            onChange={(e) => {
+              setPassword(e.target.value)
+            }}
           />
           <Button
             type="submit"
@@ -114,6 +134,7 @@ const Login = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={login}
           >
             Sign In
           </Button>
