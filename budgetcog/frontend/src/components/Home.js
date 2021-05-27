@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
-import { Button, Grid, Typography, Box, CssBaseline, Container, CardMedia } from '@material-ui/core';
+import { 
+    Button, 
+    Grid, 
+    Typography, 
+    Box, 
+    CssBaseline, 
+    Container, 
+    CardMedia 
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -71,10 +79,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
     const classes = useStyles();
-    const [checked, setChecked] = useState(false);
-    useEffect(() => {
-        setChecked(true);
-    }, []);
     return (
         <CssBaseline>
             <Navbar />
@@ -82,13 +86,13 @@ const Home = () => {
                 <Container>
                     <Grid container>
                         <Grid container item sm={12} md={6} spacing={3} className={classes.heroTextWrapper}>
-                                <CardMedia className={classes.smallerText}>
-                                    <Box px={4} py={2}>
-                                        <Typography variant="h2" style={{ fontWeight: 700 }}>Save <span className={classes.colorText}>smarter</span> with BudgetCog</Typography>
-                                        <Typography variant="h6" className={classes.body1}>Use BudgetCog to manage and track your monthly expenses all in one place</Typography>
-                                        <Button variant="contained" color="primary" size="large"><Link className={classes.registerLink} to="/register">Register</Link></Button>
-                                    </Box>
-                                </CardMedia> 
+                            <CardMedia className={classes.smallerText}>
+                                <Box px={4} py={2}>
+                                    <Typography variant="h2" style={{ fontWeight: 700 }}>Save <span className={classes.colorText}>smarter</span> with BudgetCog</Typography>
+                                    <Typography variant="h6" className={classes.body1}>Use BudgetCog to manage and track your monthly expenses all in one place</Typography>
+                                    <Button variant="contained" color="primary" size="large"><Link className={classes.registerLink} to="/register">Register</Link></Button>
+                                </Box>
+                            </CardMedia> 
                         </Grid>
                         <Grid container item sm={12} md={6} spacing={3}>
                             <div className={classes.vectorWrapper}>

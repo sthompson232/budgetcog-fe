@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles, AppBar, Button, Typography, Toolbar } from '@material-ui/core';
+import { makeStyles, AppBar, Button, Typography, Toolbar, Grid } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     },
     logo: {
         color: "#000000",
-        flexGrow: '1'
     },
     button: {
         borderRadius: 5,
@@ -53,8 +52,19 @@ const Navbar = () => {
     <div>
         <AppBar className={classes.appbar} elevation={0}>
             <Toolbar className={classes.appbarWrapper}>
-                <Typography variant="h4" className={classes.logo}>BudgetC<img className={classes.cog} src="../../static/frontend/images/cog.png"/>g</Typography>
-                <Link to="/login" className={classes.link}><Button variant="outlined" className={classes.button}>Login</Button></Link>
+                <Grid 
+                justify="space-between"
+                container
+                >
+                    <Grid item>
+                        <Link to="/" className={classes.link}>
+                            <Typography variant="h4" className={classes.logo}>BudgetC<img className={classes.cog} src="../../static/frontend/images/cog.png"/>g</Typography>
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Link to="/login" className={classes.link}><Button variant="outlined" className={classes.button}>Login</Button></Link>
+                    </Grid>
+                </Grid>
             </Toolbar>
         </AppBar>
     </div>

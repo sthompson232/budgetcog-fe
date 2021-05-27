@@ -5,7 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import {
   Route,
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch
 } from 'react-router-dom';
 import { 
