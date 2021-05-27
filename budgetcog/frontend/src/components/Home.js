@@ -10,8 +10,14 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage: "url('../../static/frontend/images/backdrop.png')",
         backgroundRepeat: "no-repeat",
         backgroundSize:"cover",
-        backgroundPositionX: "90%",
-        backgroundPositionY: "bottom"
+        [theme.breakpoints.up('sm')]: {
+            backgroundPositionX: "75%",
+            backgroundPositionY: "bottom"
+        },
+        [theme.breakpoints.down('sm')]: {
+            backgroundPositionX: "50%",
+            backgroundPositionY: "center"
+        }
     },
     imageVector: {
         maxWidth: "50vw",

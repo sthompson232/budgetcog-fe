@@ -22,20 +22,29 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         borderRadius: 5,
-        borderColor: "white",
         textDecoration: "none",
+        [theme.breakpoints.down('md')]: {
+            borderColor: "#000000",
+            color: "#000000",
+            paddingLeft: 20,
+            paddingRight: 20,
+        },
+        [theme.breakpoints.up('md')]: {
+        borderColor: "white",
         color: "#ffffff",
-        [theme.breakpoints.up('sm')]: {
-        paddingTop: 5,
-        paddingBottom: 5,
-        paddingLeft: 35,
-        paddingRight: 35,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 50,
+        paddingRight: 50,
         }
     },
     appbarWrapper: {
         width: '95%',
         margin: '0 auto',
       },
+    link: {
+        textDecoration: "none"
+    }
 }));
 
 const Navbar = () => {
@@ -45,7 +54,7 @@ const Navbar = () => {
         <AppBar className={classes.appbar} elevation={0}>
             <Toolbar className={classes.appbarWrapper}>
                 <Typography variant="h4" className={classes.logo}>BudgetC<img className={classes.cog} src="../../static/frontend/images/cog.png"/>g</Typography>
-                <Link to="/login"><Button variant="outlined" className={classes.button}>Login</Button></Link>
+                <Link to="/login" className={classes.link}><Button variant="outlined" className={classes.button}>Login</Button></Link>
             </Toolbar>
         </AppBar>
     </div>
