@@ -8,14 +8,6 @@ import {
   HashRouter as Router,
   Switch
 } from 'react-router-dom';
-import { 
-  ApolloClient, 
-  InMemoryCache, 
-  ApolloProvider, 
-  HttpLink, 
-  from 
-} from "@apollo/client";
-import { onError } from '@apollo/client/link/error';
 import { MuiThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 import blue from '@material-ui/core/colors/blue';
 
@@ -44,41 +36,16 @@ let theme = createMuiTheme({
 
 theme = responsiveFontSizes(theme);
 
-// GRAPHQL APOLLO CONFIG
-const errorLink = onError(({ graphqlErrors, networkError }) => {
-  if (graphqlErrors) {
-    graphqlErrors.map(({ message, location, path }) => {
-      alert(`Graphql error ${message}`);
-    });
-  }
-});
-
-const link = from([
-  errorLink,
-  new HttpLink({
-    credentials: 'same-origin',
-    uri: "http://localhost:8000/graphql/",
-  }),
-]);
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: link,
-  connectToDevTools: true,
-});
-
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <ApolloProvider client={client}>
-      <Router>
-        <React.StrictMode>
-          <Switch>
-            <Route exact path="/" component={App} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-          </Switch>
-        </React.StrictMode>
-      </Router>
-    </ApolloProvider>
+    <Router>
+      <React.StrictMode>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+        </Switch>
+      </React.StrictMode>
+    </Router>
   </MuiThemeProvider>,
   document.getElementById('root'));

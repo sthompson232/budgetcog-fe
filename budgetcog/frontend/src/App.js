@@ -4,16 +4,21 @@ import Home from './components/Home';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState("");
+  const [currentUser, setCurrentUser] = useState({
+    loggedIn: false,
+    verified: false,
+    email: ""
+  });
 
   useEffect(() => {
-    setLoggedIn(localStorage.getItem('access_token') ? true : false)
-  })
+    setCurrentUser({
+      ...currentUser,
+      loggedIn: localStorage.getItem('access_token') ? true : false
+    });
+  });
 
-  console.log(loggedIn)
-
-  if (loggedIn) {
-    return <Dashboard />
+  if (currentUser.loggedIn) {
+    return <Dashboard currentUser={currentUser} />
   } else {
     return <Home />
   }
