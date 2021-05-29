@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../graphql/Mutations';
 import { useMutation } from '@apollo/client';
@@ -74,8 +74,13 @@ const Login = () => {
         variables: {
           email: email,
           password: password
+        },
+        onCompleted: ({ tokenAuth }) => {
+          localStorage.setItem('access_token', tokenAuth.token);
+          localStorage.setItem('refresh_token', tokenAuth.refreshToken);
+          history.pushState('/');
         }
-      })
+      });
 
       if (error) {
         console.log(error);

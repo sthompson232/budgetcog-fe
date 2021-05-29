@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { REGISTER } from '../graphql/Mutations';
+import { useMutation } from '@apollo/client';
 import Navbar from './Navbar';
 import { 
     Avatar, 
     Button, 
     CssBaseline, 
     TextField, 
-    FormControlLabel, 
-    Checkbox,  
     Grid, 
     Typography, 
     Container, 
@@ -65,6 +65,33 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = () => {
     const classes = useStyles();
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [password1, setPassword1] = useState("");
+    const [password2, setPassword2] = useState("");
+
+    const [register, { error }] = useMutation(REGISTER);
+
+    const registerUser = () => {
+        register({
+            variables: {
+                email: email,
+                username: username,
+                password1: password1,
+                password2: password2
+            },
+            onCompleted: ({ tokenAuth }) => {
+                localStorage.setItem('access_token', tokenAuth.token);
+                localStorage.setItem('refresh_token', tokenAuth.refreshToken);
+                history.pushState('/');
+            }
+        });
+
+        if (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <CssBaseline>
         <Navbar />
@@ -89,10 +116,27 @@ const Register = () => {
                         variant="outlined"
                         required
                         fullWidth
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
+                        onChange={(e) => {
+                            setUsername(e.target.value)
+                          }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
                         id="email"
                         label="Email Address"
                         name="email"
                         autoComplete="email"
+                        onChange={(e) => {
+                            setEmail(e.target.value)
+                          }}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -105,6 +149,9 @@ const Register = () => {
                         type="password"
                         id="password1"
                         autoComplete="current-password"
+                        onChange={(e) => {
+                            setPassword1(e.target.value)
+                          }}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -117,6 +164,9 @@ const Register = () => {
                         type="password"
                         id="password2"
                         autoComplete="current-password"
+                        onChange={(e) => {
+                            setPassword2(e.target.value)
+                          }}
                         />
                     </Grid>
                     </Grid>
@@ -126,6 +176,7 @@ const Register = () => {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onClick={registerUser}
                     >
                     Sign Up
                     </Button>

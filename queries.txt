@@ -16,6 +16,7 @@ query {
 
 mutation {
     register(
+        username: "email@email.com",
         email: "email@email.com",
         password1: "123456789",
         password2: "123456789"

@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'api',
-    'users',
     'frontend',
 ]
 
@@ -132,7 +131,7 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'api.User'
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
