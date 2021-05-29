@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { REGISTER } from '../graphql/Mutations';
-import { useMutation } from '@apollo/client';
 import Navbar from './Navbar';
 import { 
     Avatar, 
@@ -69,28 +67,6 @@ const Register = () => {
     const [username, setUsername] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
-
-    const [register, { error }] = useMutation(REGISTER);
-
-    const registerUser = () => {
-        register({
-            variables: {
-                email: email,
-                username: username,
-                password1: password1,
-                password2: password2
-            },
-            onCompleted: ({ tokenAuth }) => {
-                localStorage.setItem('access_token', tokenAuth.token);
-                localStorage.setItem('refresh_token', tokenAuth.refreshToken);
-                history.pushState('/');
-            }
-        });
-
-        if (error) {
-            console.log(error);
-        }
-    };
 
     return (
         <CssBaseline>

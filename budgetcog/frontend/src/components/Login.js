@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../graphql/Mutations';
-import { useMutation } from '@apollo/client';
+import { Link, useHistory } from 'react-router-dom';
 import Navbar from './Navbar';
 import { 
     Avatar, 
@@ -16,6 +14,7 @@ import {
     makeStyles 
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import axiosInstance from '../axios';
 
 const useStyles = makeStyles((theme) => ({
     imageBackground: {
@@ -63,28 +62,27 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Login = () => {
+    const history = useHistory();
     const classes = useStyles();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [tokenAuth, { error }] = useMutation(LOGIN);
-
-    const login = () => {
-      tokenAuth({
-        variables: {
-          email: email,
-          password: password
-        },
-        onCompleted: ({ tokenAuth }) => {
-          localStorage.setItem('access_token', tokenAuth.token);
-          localStorage.setItem('refresh_token', tokenAuth.refreshToken);
-          history.pushState('/');
-        }
+    const login = (e) => {
+      e.preventDefault();
+      
+      axiosInstance
+      .post(`token/`, {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        localStorage.setItem('access_token', res.data.access);
+        localStorage.setItem('refresh_token', res.data.refresh);
+        axiosInstance.defaults.headers['Authorization'] =
+          'JWT ' + localStorage.getItem('access_token');
+        history.push('/');
+        console.log(res)
       });
-
-      if (error) {
-        console.log(error);
-      }
     };
 
     return (

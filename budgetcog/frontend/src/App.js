@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import Home from './components/Home';
 import Dashboard from './components/Dashboard';
-import { useQuery } from '@apollo/client';
-import { CURRENT_USER } from './graphql/Queries';
+import Home from './components/Home';
 
 function App() {
 
-  const {error, loading, data} = useQuery(CURRENT_USER)
-  const [currentUser, setCurrentUser] = useState([])
+  const [loggedIn, setLoggedIn] = useState("");
 
   useEffect(() => {
-    if (data) {
-      console.log(data.me)
-      setCurrentUser([data.me])
-    }
-  }, [data])
+    setLoggedIn(localStorage.getItem('access_token') ? true : false)
+  })
 
-  return (
-    <div>
-      {currentUser}
-      {currentUser ? <Home /> : <Dashboard />}
-    </div>
-  );
+  console.log(loggedIn)
+
+  if (loggedIn) {
+    return <Dashboard />
+  } else {
+    return <Home />
+  }
 }
 
 export default App;

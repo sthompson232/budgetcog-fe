@@ -1,10 +1,11 @@
 import React from 'react';
-import GetUsers from './GetUsers';
+import Logout from './Logout';
 
 const Dashboard = () => {
     return (
         <div>
-            {/* <GetUsers /> */}
+            Dashboard
+            {/* <Logout /> */}
         </div>
     )
 }

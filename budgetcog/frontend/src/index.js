@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Register from './components/Register';
 import {
   Route,
@@ -76,6 +77,7 @@ ReactDOM.render(
             <Route exact path="/" component={App} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="logout" component={Logout} />
           </Switch>
         </React.StrictMode>
       </Router>
