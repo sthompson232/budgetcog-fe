@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <h1>Hello {name}</h1>
       <h2>Your email address is {email}</h2>
-      <img src={image} alt="" />
+      <img src={image} alt={name} />
       {isAuthenticated ? <Logout /> : <Login />}
       
       
