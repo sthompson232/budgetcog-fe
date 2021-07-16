@@ -1,7 +1,6 @@
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from "react-redux";
 import { login } from '../../redux/actions/auth'
-import { refreshTokenSetup } from './refreshToken';
 import googleLogin from './googleLogin';
 
 const clientId = "410529829748-gu4huem6ecau5ni1mnn4fcq7rcmm9qmh.apps.googleusercontent.com";
@@ -10,9 +9,7 @@ function Login() {
   const dispatch = useDispatch()
 
   const onSuccess = (res: any) => {
-    refreshTokenSetup(res);
     googleLogin(res.accessToken)
-    localStorage.setItem('access_token', res.accessToken) 
     dispatch(login(res))
   };
 

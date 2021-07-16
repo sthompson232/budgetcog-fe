@@ -1,5 +1,4 @@
 const initialState = {
-    token: localStorage.getItem('access_token'),
     firstName: '',
     lastName: '',
     imageUrl: '',
