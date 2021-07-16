@@ -4,7 +4,6 @@ const initialState = {
     imageUrl: '',
     email: '',
     isAuthenticated: null,
-    isLoading: false,
 }
 
 const userReducer = (state = initialState, action: any) => {
@@ -18,8 +17,17 @@ const userReducer = (state = initialState, action: any) => {
                 email: action.payload.profileObj.email,
                 imageUrl: action.payload.profileObj.imageUrl,
                 isAuthenticated: true,
-                isLoading: false
             };
+        case 'LOGOUT':
+            return {
+                ...state,
+                firstName: '',
+                lastName: '',
+                fullName: '',
+                email: '',
+                imageUrl: '',
+                isAuthenticated: false,
+            }
         default:
             return state;
     }
