@@ -1,5 +1,5 @@
 import { GoogleLogin } from 'react-google-login';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from '../../redux/actions/auth'
 import { refreshTokenSetup } from './refreshToken';
 import googleLogin from './googleLogin';
@@ -8,9 +8,6 @@ const clientId = "410529829748-gu4huem6ecau5ni1mnn4fcq7rcmm9qmh.apps.googleuserc
 
 function Login() {
   const dispatch = useDispatch()
-  let name = useSelector((state: any) => {return state.user.fullName})
-  let image = useSelector((state: any) => {return state.user.imageUrl})
-  let email = useSelector((state: any) => {return state.user.email})
 
   const onSuccess = (res: any) => {
     refreshTokenSetup(res);
@@ -25,9 +22,6 @@ function Login() {
 
   return (
     <div>
-      <h1>Hello {name}</h1>
-      <h2>Your email address is {email}</h2>
-      <img src={image} alt="" />
       <GoogleLogin
         clientId={clientId}
         buttonText="Login with Google"
