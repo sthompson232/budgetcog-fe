@@ -3,7 +3,7 @@ const initialState = {
     lastName: '',
     imageUrl: '',
     email: '',
-    isAuthenticated: null,
+    isAuthenticated: false,
 }
 
 const userReducer = (state = initialState, action: any) => {
