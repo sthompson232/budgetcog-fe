@@ -12,6 +12,7 @@ function Login() {
   const onSuccess = (res: any) => {
     refreshTokenSetup(res);
     googleLogin(res.accessToken)
+    localStorage.setItem('access_token', res.accessToken) 
     setName(res.profileObj.givenName + ' ' + res.profileObj.familyName)
   };
 

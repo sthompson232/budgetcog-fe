@@ -63,7 +63,12 @@ AUTH_USER_MODEL = "users.User"
 # LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
+
+# CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
