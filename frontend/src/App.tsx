@@ -1,9 +1,11 @@
-import GoogleSocialAuth from './components/auth/GoogleSocialAuth';
+import Login from './components/auth/Login'
+import Logout from './components/auth/Logout'
 
 function App() {
   return (
     <div className="App">
-      <GoogleSocialAuth />
+      <Login />
+      <Logout />
     </div>
   );
 }
