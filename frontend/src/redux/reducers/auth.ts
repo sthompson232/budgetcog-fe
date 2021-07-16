@@ -1,17 +1,23 @@
 const initialState = {
     token: localStorage.getItem('access_token'),
+    firstName: '',
+    lastName: '',
+    imageUrl: '',
+    email: '',
     isAuthenticated: null,
     isLoading: false,
-    user: null
 }
 
-export default function(state = initialState, action: any) {
+const userReducer = (state = initialState, action: any) => {
     switch(action.type) {
-        case 'LOGIN_SUCCESS':
-            localStorage.setItem('access_token', action.payload.token);
+        case 'LOGIN':
             return {
                 ...state,
-                ...action.payload,
+                firstName: action.payload.profileObj.givenName,
+                lastName: action.payload.profileObj.familyName,
+                fullName: `${action.payload.profileObj.givenName} ${action.payload.profileObj.familyName}`,
+                email: action.payload.profileObj.email,
+                imageUrl: action.payload.profileObj.imageUrl,
                 isAuthenticated: true,
                 isLoading: false
             };
@@ -19,3 +25,5 @@ export default function(state = initialState, action: any) {
             return state;
     }
 }
+
+export default userReducer
