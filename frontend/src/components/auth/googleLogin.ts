@@ -1,11 +1,8 @@
-
 import axios from "axios";
 
-/**
- * 
- * @param {*} accesstoken This is the accesstoken of the user obtained from Google
- */
+
 const googleLogin = async (accesstoken: string) => {
+    console.log("googleLogin", accesstoken)
     let res = await axios.post(
       "http://localhost:8000/dj-rest-auth/google/",
       {

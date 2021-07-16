@@ -10,14 +10,10 @@ function Login() {
   const [name, setName] = useState('')
 
   const responseGoogle = async(response: any) => {
-    let googleResponse  = await googleLogin(response.accessToken)
-    console.log(googleResponse);
-    console.log(response);
+    let googleResponse  = await googleLogin(response)
   }
 
   const onSuccess = (res: any) => {
-    console.log('Login Success: currentUser:', res.profileObj);
-    console.log(res)
     refreshTokenSetup(res);
     responseGoogle(res.accessToken)
     setName(res.profileObj.givenName + ' ' + res.profileObj.familyName)
