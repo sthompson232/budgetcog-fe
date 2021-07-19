@@ -15,7 +15,7 @@ import {
     ModalHeader,
     ModalCloseButton,
     useDisclosure,
-  } from '@chakra-ui/react';
+  } from '@chakra-ui/react'
 import Navbar from './Navbar'
 
 

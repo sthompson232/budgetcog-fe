@@ -11,10 +11,12 @@ import {
   Heading,
   DrawerFooter,
   Flex,
-  CloseButton
+  CloseButton,
+  Image
 } from '@chakra-ui/react'
-import SidebarContent from './SidebarContent';
-import SidebarFooter from './SidebarFooter';
+import SidebarContent from './SidebarContent'
+import SidebarFooter from './SidebarFooter'
+import logo from '../../static/images/logo.png'
 
 const Sidebar = ({ variant }) => {
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true });
@@ -29,7 +31,7 @@ const Sidebar = ({ variant }) => {
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">
             <Flex justifyContent="space-between">
-              <Heading fontWeight={800}>BudgetCog</Heading>
+              <Image htmlWidth={180} src={logo} pt={1} />
               <CloseButton variantColor="blue" onClick={onClose} />
             </Flex>
           </DrawerHeader>
@@ -54,7 +56,7 @@ const Sidebar = ({ variant }) => {
       h="100%"
       bg="gray.50"
     >
-      <Heading pb={3} fontWeight={800}>BudgetCog</Heading>
+      <Image htmlWidth={180} src={logo} pb={3} />
         <hr />
         <Box py={4}>
           <SidebarContent onClick={onClose} />
