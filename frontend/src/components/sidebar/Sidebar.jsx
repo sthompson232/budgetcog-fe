@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button,
+  Link,
   DrawerOverlay,
   DrawerContent,
   DrawerBody, 
@@ -19,20 +19,22 @@ import logo from '../../static/images/logo.png'
 
 
 const Sidebar = ({ variant }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true });
+  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false });
 
   return variant === 'drawer' ? (
     <div>
-      <Button variantColor="blue" onClick={onOpen}>
-        Open
-      </Button>
+      <Box bg='gray.50' p={2}>
+        <Link  onClick={onOpen}>
+          <i className="fas fa-2x fa-bars"></i>
+        </Link>
+      </Box>
       <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">
             <Flex justifyContent="space-between">
               <Image htmlWidth={180} src={logo} pt={1} />
-              <CloseButton variantColor="blue" onClick={onClose} />
+              <CloseButton onClick={onClose} />
             </Flex>
           </DrawerHeader>
           <DrawerBody>
