@@ -6,6 +6,15 @@ import { Provider } from 'react-redux'
 import rootReducer from './redux/reducers/index'
 import reportWebVitals from './reportWebVitals'
 import './static/index.scss' 
+import { ChakraProvider } from '@chakra-ui/react'
+import { extendTheme } from "@chakra-ui/react"
+
+const theme = extendTheme({
+  fonts: {
+    heading: "Inter",
+    body: "Inter",
+  }
+})
 
 declare global {
   interface Window {
@@ -18,7 +27,9 @@ const store = createStore(rootReducer, composeEnhancers());
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import Landing from './components/Landing'
+import Landing from './components/landing/Landing'
 import Dashboard from './components/Dashboard';
 
 
