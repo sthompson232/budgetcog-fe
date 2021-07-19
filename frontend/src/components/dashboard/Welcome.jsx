@@ -3,9 +3,12 @@ import { useSelector } from 'react-redux'
 import { 
     Box,
     Heading,
+    Text,
+    Button,
     Flex
 } from '@chakra-ui/react'
 import getDate from '../../utils/date'
+import image from '../../static/images/magic.jpg'
 
 
 const Welcome = () => {
@@ -22,10 +25,13 @@ const Welcome = () => {
     }, [curHour])
   
     return (
-        <Box w='80%' bg='#ffffff'>
-            <Flex justifyContent='space-between'>
-                <Heading fontWeight={800}>Good {currentHour}, {name}.</Heading>
-                <Heading>{getDate(today.getDay(), today.getMonth(), today.getFullYear())}</Heading>
+        <Box w='100%' className='welcome-image' backgroundImage={image} py={8} px={4} borderRadius={12}>
+            <Flex justifyContent='space-between' alignItems='center'>
+                <Box>
+                    <Heading size={'lg'} fontWeight={800} color='white'>Good {currentHour}, {name}.👋</Heading>
+                    <Text size={'md'} color='#cccccc'>{getDate(today.getDay(), today.getMonth(), today.getFullYear())}</Text>
+                </Box>
+                <Button>Add an expense</Button>
             </Flex>
         </Box>
     )

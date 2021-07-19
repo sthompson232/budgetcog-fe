@@ -7,6 +7,7 @@ import image from '../static/images/pattern1.jpg'
 
 const AppWrapper = ({page}) => {
     const variant = useBreakpointValue({ base: 'drawer', lg: 'sidebar'})
+    const background = ''
 
     useEffect(() => {
         axiosGet('test/').then(res => console.log(res.data))
@@ -15,7 +16,7 @@ const AppWrapper = ({page}) => {
     return (
         <div>
             <Sidebar variant={variant}/>
-            <Box ml={variant === 'sidebar' ? 320 : 0} className='background-image' backgroundImage={image}>
+            <Box ml={variant === 'sidebar' ? 320 : 0} className='background-image' bg={!background ? 'gray.100' : ''} backgroundImage={background ? background : ''}>
                 {page}
             </Box>
         </div>

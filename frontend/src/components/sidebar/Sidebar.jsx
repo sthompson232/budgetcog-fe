@@ -23,7 +23,7 @@ const Sidebar = ({ variant }) => {
 
   return variant === 'drawer' ? (
     <div>
-      <Box bg='gray.50' p={2}>
+      <Box p={2}>
         <Link  onClick={onOpen}>
           <i className="fas fa-2x fa-bars"></i>
         </Link>
