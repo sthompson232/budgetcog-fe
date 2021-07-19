@@ -7,12 +7,17 @@ import {
   DrawerHeader,
   Drawer, 
   useDisclosure,
-  Box
+  Box,
+  Heading,
+  DrawerFooter,
+  Flex,
+  CloseButton
 } from '@chakra-ui/react'
 import SidebarContent from './SidebarContent';
+import SidebarFooter from './SidebarFooter';
 
 const Sidebar = ({ variant }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true });
 
   return variant === 'drawer' ? (
     <div>
@@ -22,13 +27,18 @@ const Sidebar = ({ variant }) => {
       <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
-          <Button variantColor="blue" onClick={onClose}>
-            Open
-          </Button>
+          <DrawerHeader borderBottomWidth="1px">
+            <Flex justifyContent="space-between">
+              <Heading fontWeight={800}>BudgetCog</Heading>
+              <CloseButton variantColor="blue" onClick={onClose} />
+            </Flex>
+          </DrawerHeader>
           <DrawerBody>
             <SidebarContent />
           </DrawerBody>
+          <DrawerFooter>
+            <SidebarFooter />
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </div>
@@ -37,12 +47,16 @@ const Sidebar = ({ variant }) => {
       position="fixed"
       left={0}
       p={5}
-      w="250px"
+      w="320px"
       top={0}
       h="100%"
-      bg="#dfdfdf"
+      bg="gray.50"
     >
-      <SidebarContent onClick={onClose} />
+      <Heading fontWeight={800}>BudgetCog</Heading>
+        <SidebarContent onClick={onClose} />
+        <Box position="fixed" bottom={0} pb={4}>
+          <SidebarFooter />
+        </Box>
     </Box>
   )
 }
