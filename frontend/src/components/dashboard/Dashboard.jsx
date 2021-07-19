@@ -1,8 +1,11 @@
+import Welcome from './Welcome'
+
+
 const Dashboard = () => {
 
     return (
         <div>
-            <h1>dashboard</h1>
+            <Welcome />
         </div>
     )
 }

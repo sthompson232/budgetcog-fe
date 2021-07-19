@@ -13,7 +13,6 @@ const SidebarButton = ({ to, name, icon }) => {
     const ref = useRef()
     const [active, setActive] = useState(false)
     let userColor = useSelector(state => {return state.user.color})
-    console.log(userColor)
 
     useEffect(() => {
         if (ref.current.classList.contains("active")) {
