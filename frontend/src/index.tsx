@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { createStore, compose } from 'redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { createStore, compose } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './redux/reducers/index'
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals'
+import './static/index.scss' 
 
 declare global {
   interface Window {

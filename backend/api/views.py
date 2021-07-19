@@ -6,4 +6,5 @@ class TestView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
+        print(request.user)
         return Response('backend authentication is working')
