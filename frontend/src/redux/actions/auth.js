@@ -1,4 +1,4 @@
-export const login = (payload: any) => {
+export const login = (payload) => {
     return {
         type: 'LOGIN',
         payload: payload

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const googleLogin = (accesstoken: string) => {
+const googleLogin = (accesstoken) => {
 	axios
 		.post('http://127.0.0.1:8000/auth/convert-token', {
 			token: accesstoken,

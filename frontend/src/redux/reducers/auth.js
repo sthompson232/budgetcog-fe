@@ -6,7 +6,7 @@ const initialState = {
     isAuthenticated: false,
 }
 
-const userReducer = (state = initialState, action: any) => {
+const userReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'LOGIN':
             return {
