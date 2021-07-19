@@ -8,7 +8,6 @@ import {
   Drawer, 
   useDisclosure,
   Box,
-  Heading,
   DrawerFooter,
   Flex,
   CloseButton,
@@ -17,6 +16,7 @@ import {
 import SidebarContent from './SidebarContent'
 import SidebarFooter from './SidebarFooter'
 import logo from '../../static/images/logo.png'
+
 
 const Sidebar = ({ variant }) => {
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true });

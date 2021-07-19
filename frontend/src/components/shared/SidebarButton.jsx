@@ -1,16 +1,34 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { 
     Box,
-    Link as ReachLink,
-    Button
+    Button,
+    Text
 } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
-const SidebarButton = ({ to, name }) => {
+const SidebarButton = ({ to, name, icon }) => {
+    const ref = useRef()
+    const [active, setActive] = useState(false)
+
+    useEffect(() => {
+        if (ref.current.classList.contains("active")) {
+            setActive(true)
+        } else {
+            setActive(false)
+        }
+    })
+
     return (
         <Box py={1}>
-            <Link as={ReachLink} to={to}><Button w="100%">{name}</Button></Link>
+            <NavLink exact to={to} activeClassName="active" ref={ref}>
+                <Button w="100%" justifyContent="flex-start">
+                    <Box pr={4}>
+                        {icon}
+                    </Box>
+                    <Text color={active ? '#000000' : '#999999'}>{name}</Text>
+                </Button>
+            </NavLink>
         </Box>
     )
 }
