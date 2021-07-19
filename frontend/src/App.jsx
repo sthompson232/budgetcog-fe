@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useSelector } from "react-redux"
 import Landing from './components/landing/Landing'
 import Dashboard from './components/Dashboard'
@@ -11,12 +10,8 @@ import {
 } from "react-router-dom"
 
 
-function App() {
+const App = () => {
   let isAuthenticated = useSelector((state) => {return state.user.isAuthenticated})
-
-  useEffect(() => {
-    console.log(isAuthenticated)
-  }, [isAuthenticated])
 
   return (
     <div className="App">
