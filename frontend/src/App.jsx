@@ -21,14 +21,17 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route exact path="/">
-            {isAuthenticated ? <AppWrapper page={<Dashboard />}/> : <Landing />} 
-          </Route>
-          <Route exact path="/settings">
-            <AppWrapper page={<Settings />} />
-          </Route>
-        </Switch>
+        {isAuthenticated ? 
+          <Switch>
+            <Route exact path="/">
+              <AppWrapper page={<Dashboard />} />
+            </Route>
+            <Route exact path="/settings">
+              <AppWrapper page={<Settings />} />
+            </Route>
+          </Switch>
+        :
+        <Landing />}
       </Router>
     </div>
   );

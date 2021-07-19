@@ -34,7 +34,9 @@ const Sidebar = ({ variant }) => {
             </Flex>
           </DrawerHeader>
           <DrawerBody>
-            <SidebarContent />
+            <Box py={4}>
+              <SidebarContent />
+            </Box>
           </DrawerBody>
           <DrawerFooter>
             <SidebarFooter />
@@ -52,8 +54,11 @@ const Sidebar = ({ variant }) => {
       h="100%"
       bg="gray.50"
     >
-      <Heading fontWeight={800}>BudgetCog</Heading>
-        <SidebarContent onClick={onClose} />
+      <Heading pb={3} fontWeight={800}>BudgetCog</Heading>
+        <hr />
+        <Box py={4}>
+          <SidebarContent onClick={onClose} />
+        </Box>
         <Box position="fixed" bottom={0} pb={4}>
           <SidebarFooter />
         </Box>

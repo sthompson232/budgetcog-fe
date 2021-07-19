@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 const SidebarButton = ({ to, name }) => {
     return (
-        <Box py={4}>
+        <Box py={1}>
             <Link as={ReachLink} to={to}><Button w="100%">{name}</Button></Link>
         </Box>
     )
