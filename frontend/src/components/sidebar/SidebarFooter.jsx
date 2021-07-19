@@ -8,9 +8,9 @@ import {
  } from '@chakra-ui/react'
 
 const SidebarFooter = () => {
-    let name = useSelector((state) => {return state.user.fullName})
-    let image = useSelector((state) => {return state.user.imageUrl})
-    let email = useSelector((state) => {return state.user.email})
+    let name = useSelector(state => {return state.user.fullName})
+    let image = useSelector(state => {return state.user.imageUrl})
+    let email = useSelector(state => {return state.user.email})
 
     return (
         <div>
@@ -22,7 +22,7 @@ const SidebarFooter = () => {
                         <Text fontWeight="bold">
                             {name}
                         </Text>
-                        <Text fontSize="sm">{email}</Text>
+                        <Text fontSize="sm" color="#777777">{email}</Text>
                     </Box>
                 </Flex>
                 <Box py={2}>

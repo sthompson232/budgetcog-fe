@@ -4,6 +4,7 @@ const initialState = {
     imageUrl: '',
     email: '',
     isAuthenticated: false,
+    color: '#0BC5EA'
 }
 
 const userReducer = (state = initialState, action) => {

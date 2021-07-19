@@ -4,12 +4,16 @@ import {
     Button,
     Text
 } from '@chakra-ui/react'
-import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { NavLink, useLocation } from 'react-router-dom'
 
 
 const SidebarButton = ({ to, name, icon }) => {
+    let location = useLocation()
     const ref = useRef()
     const [active, setActive] = useState(false)
+    let userColor = useSelector(state => {return state.user.color})
+    console.log(userColor)
 
     useEffect(() => {
         if (ref.current.classList.contains("active")) {
@@ -17,7 +21,7 @@ const SidebarButton = ({ to, name, icon }) => {
         } else {
             setActive(false)
         }
-    })
+    }, [location])
 
     return (
         <Box py={1}>
@@ -26,7 +30,7 @@ const SidebarButton = ({ to, name, icon }) => {
                     <Box pr={4}>
                         {icon}
                     </Box>
-                    <Text color={active ? '#000000' : '#999999'}>{name}</Text>
+                    <Text fontWeight={500} color={active ? userColor : '#777777'}>{name}</Text>
                 </Button>
             </NavLink>
         </Box>
