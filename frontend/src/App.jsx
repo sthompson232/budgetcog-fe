@@ -1,14 +1,35 @@
+import { useEffect } from 'react'
 import { useSelector } from "react-redux"
 import Landing from './components/landing/Landing'
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard'
+import AppWrapper from './components/AppWrapper'
+import Settings from './components/Settings'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom"
 
 
 function App() {
-  let isAuthenticated = useSelector((state: any) => {return state.user.isAuthenticated})
+  let isAuthenticated = useSelector((state) => {return state.user.isAuthenticated})
+
+  useEffect(() => {
+    console.log(isAuthenticated)
+  }, [isAuthenticated])
 
   return (
     <div className="App">
-      {isAuthenticated ? <Dashboard /> : <Landing />} 
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            {isAuthenticated ? <AppWrapper page={<Dashboard />}/> : <Landing />} 
+          </Route>
+          <Route exact path="/settings">
+            <AppWrapper page={<Settings />} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

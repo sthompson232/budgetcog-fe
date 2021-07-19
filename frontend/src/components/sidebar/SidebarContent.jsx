@@ -1,15 +1,13 @@
 import React from 'react'
-import { 
-    Box,
-    Link,
-    Button
-} from '@chakra-ui/react'
+import SidebarButton from '../shared/SidebarButton'
+
 
 const SidebarContent = () => {
     return (
-        <Box py={4}>
-            <Link as={Button} to="/home">Sidebar content</Link>
-        </Box>
+        <div>
+            <SidebarButton to={'/'} name={'Dashboard'} />
+            <SidebarButton to={'/settings'} name={'Settings'}/>
+        </div>
     )
 }
 
