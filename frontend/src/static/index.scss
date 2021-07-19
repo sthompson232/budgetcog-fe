@@ -1,6 +1,6 @@
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
-    font-weight: 700;
+    font-weight: 900;
 }
 
 p {
@@ -9,9 +9,13 @@ p {
 }
 
 .hero-text {
-    letter-spacing: -3px;
+    letter-spacing: -0.15rem;
 }
 
 .hero-section {
     min-height: 60vh;
+}
+
+.sub-heading {
+    letter-spacing: 0.1rem;
 }

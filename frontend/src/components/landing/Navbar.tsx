@@ -2,7 +2,6 @@ import Login from '../auth/Login'
 import {
     Box,
     Flex,
-    Container,
     Heading,
   } from '@chakra-ui/react';
 
