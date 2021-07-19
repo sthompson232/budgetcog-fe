@@ -8,12 +8,12 @@ const clientId = "410529829748-gu4huem6ecau5ni1mnn4fcq7rcmm9qmh.apps.googleuserc
 function Login() {
   const dispatch = useDispatch()
 
-  const onSuccess = (res: any) => {
+  const onSuccess = (res) => {
     googleLogin(res.accessToken)
     dispatch(login(res))
   };
 
-  const onFailure = (res: any) => {
+  const onFailure = (res) => {
     console.log('Login failed: res:', res);
   };
 
