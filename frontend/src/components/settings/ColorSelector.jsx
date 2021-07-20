@@ -6,10 +6,13 @@ import {
     useRadioGroup
 } from '@chakra-ui/react'
 import { axiosGet, axiosPost } from '../../utils/axios'
+import { useDispatch } from 'react-redux'
+import { setColor } from '../../redux/actions/auth'
 
 
 function ColorCard(props) {
     const { getInputProps, getCheckboxProps } = useRadio(props)
+    const dispatch = useDispatch()
   
     const input = getInputProps()
     const checkbox = getCheckboxProps()
@@ -17,6 +20,7 @@ function ColorCard(props) {
     useEffect(() => {
         if (input.checked) {
           axiosPost('color-selector/', {"payload": input.value})
+          dispatch(setColor(input.value))
         }
     }, [input.checked, input.value])
   

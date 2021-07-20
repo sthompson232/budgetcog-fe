@@ -30,7 +30,13 @@ const userReducer = (state = initialState, action) => {
                 fullName: '',
                 email: '',
                 imageUrl: '',
+                color: '',
                 isAuthenticated: false,
+            }
+        case 'SET_COLOR':
+            return {
+                ...state,
+                color: `${action.color}.400`
             }
         default:
             return state;

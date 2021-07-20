@@ -11,3 +11,10 @@ export const logout = () => {
         type: 'LOGOUT',
     }
 }
+
+export const setColor = (color) => {
+    return {
+        type: 'SET_COLOR',
+        color: color
+    }
+}
