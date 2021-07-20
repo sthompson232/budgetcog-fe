@@ -3,7 +3,8 @@ import {
     Box,
     HStack,
     useRadio,
-    useRadioGroup
+    useRadioGroup,
+    Heading
 } from '@chakra-ui/react'
 import { axiosGet, axiosPost } from '../../utils/axios'
 import { useDispatch } from 'react-redux'
@@ -22,7 +23,7 @@ function ColorCard(props) {
           axiosPost('color-selector/', {"payload": input.value})
           dispatch(setColor(input.value))
         }
-    }, [input.checked, input.value])
+    }, [input.checked, input.value, dispatch])
   
     return (
       <Box as="label">
@@ -47,28 +48,28 @@ function ColorCard(props) {
     )
   }
   
-  // Step 2: Use the `useRadioGroup` hook to control a group of custom radios.
-  function ColorSelector() {
 
-    const [initialColor, setInitialColor] = useState('')
+function ColorSelector() {
 
-    useEffect(() => {
-      axiosGet('color-selector').then(res => setInitialColor(res.data))
-    }, [])
+  const [initialColor, setInitialColor] = useState('')
 
-    const options = ["cyan", "red", "blue", "green", "purple", "orange"]
+  useEffect(() => {
+    axiosGet('color-selector').then(res => setInitialColor(res.data))
+  })
+
+  const options = ["cyan", "red", "blue", "green", "purple", "orange", "pink"]
   
-    const { getRootProps, getRadioProps } = useRadioGroup({
-      name: "color",
-      defaultValue: initialColor,
-      onChange: console.log,
-    })
-  
-    const group = getRootProps()
-  
-    return (
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: "color",
+    defaultValue: initialColor,
+  })
+
+  const group = getRootProps()
+
+  return (
+    <Box my={6}>
+      <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Choose your theme</Heading>
       <HStack {...group}>
-        <h1>The checked color is {initialColor}</h1>
         {options.map((value) => {
           const radio = getRadioProps({ value })
           return (
@@ -78,7 +79,8 @@ function ColorCard(props) {
           )
         })}
       </HStack>
-    )
-  }
+    </Box>
+  )
+}
 
 export default ColorSelector
