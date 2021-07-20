@@ -69,13 +69,15 @@ function ColorSelector() {
   return (
     <Box my={6}>
       <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Choose your theme</Heading>
-      <HStack {...group}>
+      <HStack {...group} flexWrap='wrap' justifyContent='start'>
         {options.map((value) => {
           const radio = getRadioProps({ value })
           return (
-            <ColorCard key={value} {...radio}>
-              {value}
-            </ColorCard>
+            <Box key={value} pl={radio.value === 'cyan' ? 2 : 0} pb={2}>
+              <ColorCard {...radio}>
+                {value}
+              </ColorCard>
+            </Box>
           )
         })}
       </HStack>

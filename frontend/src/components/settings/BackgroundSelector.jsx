@@ -87,13 +87,16 @@ function BackgroundSelector() {
   return (
     <Box my={6}>
       <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Choose your background</Heading>
-      <HStack {...group}>
+      <HStack {...group} flexWrap='wrap' justifyContent='start'>
         {options.map((value) => {
           const radio = getRadioProps({ value })
+          console.log(radio)
           return (
-            <BackgroundCard key={value} {...radio}>
+            <Box key={value} pl={radio.value === '0' ? 2 : 0} pb={2}>
+            <BackgroundCard {...radio}>
               {value}
             </BackgroundCard>
+            </Box>
           )
         })}
       </HStack>
