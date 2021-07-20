@@ -3,6 +3,8 @@ import Landing from './components/landing/Landing'
 import Dashboard from './components/dashboard/Dashboard'
 import AppWrapper from './components/AppWrapper'
 import Settings from './components/settings/Settings'
+import ThisMonth from "./components/thismonth/ThisMonth"
+import PastMonths from "./components/pastmonths/PastMonths"
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,6 +25,12 @@ const App = () => {
             </Route>
             <Route exact path="/settings">
               <AppWrapper page={<Settings />} />
+            </Route>
+            <Route exact path="/this-month">
+              <AppWrapper page={<ThisMonth />} />
+            </Route>
+            <Route exact path="/past-months">
+              <AppWrapper page={<PastMonths />} />
             </Route>
           </Switch>
         :

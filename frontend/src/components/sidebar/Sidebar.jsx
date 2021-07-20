@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import {
   Link,
   DrawerOverlay,
@@ -33,7 +34,9 @@ const Sidebar = ({ variant }) => {
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">
             <Flex justifyContent="space-between">
-              <Image htmlWidth={180} src={logo} pt={1} />
+              <RouterLink to='/'>
+                <Image htmlWidth={180} src={logo} pt={1} />
+              </RouterLink>
               <CloseButton onClick={onClose} />
             </Flex>
           </DrawerHeader>
@@ -58,7 +61,9 @@ const Sidebar = ({ variant }) => {
       h="100%"
       bg="gray.50"
     >
-      <Image htmlWidth={180} src={logo} pb={3} />
+      <RouterLink to='/'>
+        <Image htmlWidth={180} src={logo} pb={3} />
+      </RouterLink>
         <hr />
         <Box py={4}>
           <SidebarContent onClick={onClose} />

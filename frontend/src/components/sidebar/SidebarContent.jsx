@@ -6,6 +6,8 @@ const SidebarContent = () => {
     return (
         <div>
             <SidebarButton to={'/'} name={'Dashboard'} icon={<i className="fas fa-lg fa-home"></i>}/>
+            <SidebarButton to={'/this-month'} name={'This Month'} icon={<i className="fas fa-lg fa-chart-pie"></i>}/>
+            <SidebarButton to={'past-months'} name={'Past Months'} icon={<i className="fas fa-lg fa-calendar-check"></i>}/>
             <SidebarButton to={'/settings'} name={'Settings'} icon={<i className="fas fa-lg fa-cog"></i>}/>
         </div>
     )
