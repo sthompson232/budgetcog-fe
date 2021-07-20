@@ -1,5 +1,22 @@
+const daysLeft = () => {
+    const now = new Date();
+    const daysInMonth = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate()
+    const daysLeft = daysInMonth - now.getDate()
+    if (daysLeft >= 25) {
+        return `You've just started the month, you have ${daysLeft} days remaning of the month!`
+    } else if (daysLeft >= 20) {
+        return `You stil have ${daysLeft} days left in the month!`
+    } else if (daysLeft >= 14) {
+        return `You're about half way, only ${daysLeft} days remaning of the month!`
+    } else if (daysLeft >= 7) {
+        return `Not long now, only ${daysLeft} days left in the month!`
+    } else {
+        return `The month is nearly over, only ${daysLeft} days left of the month!`
+    }
+  }
 
-const getDate = (curDay, curMonth, curYear) => {
+
+const getDate = (curDate, curDay, curMonth, curYear) => {
     let day = ''
     let month = ''
     let year = curYear
@@ -64,7 +81,10 @@ const getDate = (curDay, curMonth, curYear) => {
             month = 'December'
             break
     }
-    return `${day}, ${month} ${year}`
+    return `${curDate} ${day}, ${month} ${year}`
 } 
 
-export default getDate
+export { 
+    getDate,
+    daysLeft 
+}

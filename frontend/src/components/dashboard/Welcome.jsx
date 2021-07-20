@@ -7,7 +7,7 @@ import {
     Button,
     Flex
 } from '@chakra-ui/react'
-import getDate from '../../utils/date'
+import { getDate, daysLeft } from '../../utils/date'
 import image from '../../static/images/magic.jpg'
 
 
@@ -25,13 +25,13 @@ const Welcome = () => {
     }, [curHour])
   
     return (
-        <Box w='100%' className='welcome-image' backgroundImage={image} py={8} px={4} borderRadius={12}>
-            <Flex justifyContent='space-between' alignItems='center'>
-                <Box>
+        <Box w='100%' className='welcome-image' backgroundImage={image} px={4} borderRadius={12}>
+            <Flex justifyContent='space-between' alignItems='center' flexWrap='wrap' py={4}>
+                <Box my={4}>
                     <Heading size={'lg'} fontWeight={800} color='white'>Good {currentHour}, {name}.👋</Heading>
-                    <Text size={'md'} color='#cccccc'>{getDate(today.getDay(), today.getMonth(), today.getFullYear())}</Text>
+                    <Text mt={2} size={'md'} color='#dddddd'>{getDate(today.getDate(), today.getDay(), today.getMonth(), today.getFullYear())}. {daysLeft()}</Text>
                 </Box>
-                <Button>Add an expense</Button>
+                <Button my={4}>Add an expense</Button>
             </Flex>
         </Box>
     )

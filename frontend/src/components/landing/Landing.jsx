@@ -47,8 +47,8 @@ const Landing = () => {
                         <Text fontSize={'2xl'} color={'gray.500'}>
                             Use BudgetCog to manage and track your monthly expenses all in one place.
                         </Text>
-                        <Flex justifyContent={'center'}>
-                            <Button onClick={onOpen} colorScheme="cyan" boxShadow="md" size="lg" mr={8} px={16}>
+                        <Flex justifyContent={'center'} flexWrap='wrap'>
+                            <Button onClick={onOpen} colorScheme="cyan" boxShadow="md" size="lg" mx={8} mb={4} px={16}>
                                 <Text color="white">Get Started</Text>
                             </Button>
                             <Modal
@@ -66,7 +66,7 @@ const Landing = () => {
                                 </ModalBody>
                                 </ModalContent>
                             </Modal>
-                            <Button boxShadow="md" size="lg" mr={8} px={16}>
+                            <Button boxShadow="md" size="lg" mx={8} mb={4} px={16}>
                                 <Text>Learn More</Text>
                             </Button>
                         </Flex>
