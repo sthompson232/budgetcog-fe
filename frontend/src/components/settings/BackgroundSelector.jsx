@@ -22,7 +22,7 @@ function BackgroundCard(props) {
     const checkbox = getCheckboxProps()
 
     useEffect(() => {
-        switch(input.value) {
+        switch(parseInt(input.value)) {
             case 0:
                 break
             case 1:
@@ -39,7 +39,7 @@ function BackgroundCard(props) {
     useEffect(() => {
         if (input.checked) {
           axiosPost('background-selector/', {"payload": input.value})
-          dispatch(setBackground(input.value))
+          dispatch(setBackground(parseInt(input.value)))
         }
     }, [input.checked, input.value, dispatch])
   
@@ -69,16 +69,16 @@ function BackgroundCard(props) {
 
 function BackgroundSelector() {
 
-  const [initialBackground, setInitialBackground] = useState()
+  const [initialBackground, setInitialBackground] = useState('')
 
   useEffect(() => {
     axiosGet('background-selector').then(res => setInitialBackground(res.data))
   })
 
-  const options = [0, 1, 2]
+  const options = ['0', '1', '2']
   
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "Background",
+    name: "background",
     defaultValue: initialBackground,
   })
 
