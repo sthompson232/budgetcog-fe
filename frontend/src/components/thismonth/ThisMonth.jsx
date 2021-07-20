@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import ExpenseList from './ExpenseList' 
 import { axiosGet } from '../../utils/axios'
-import { Box } from '@chakra-ui/react'
+import { 
+    Box, 
+    SimpleGrid
+} from '@chakra-ui/react'
+
 
 const ThisMonth = () => {
     const [expenses, setExpenses] = useState()
@@ -10,13 +15,12 @@ const ThisMonth = () => {
     }, [])
 
     return (
-        <Box p={4} bg='white' borderRadius={12}>
-            <div>
-            {expenses && expenses.map(expense => (
-                <div key={expense.id}>{expense.name}</div>
-            ))}
-            </div>
-        </Box>
+        <SimpleGrid columns={[1, 1, 2, 1, 2]} spacing={6}>
+            <Box p={4} bg='white' borderRadius={12}>
+                <h1>Pie Chat</h1>
+            </Box>
+            <ExpenseList expenses={expenses} />
+        </SimpleGrid>
     )
 }
 
