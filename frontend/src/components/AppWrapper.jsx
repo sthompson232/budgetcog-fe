@@ -16,7 +16,7 @@ const AppWrapper = ({page}) => {
     return (
         <div>
             <Sidebar variant={variant}/>
-            <Box ml={variant === 'sidebar' ? 320 : 0} className='background-image' bg={!background ? 'gray.100' : ''} backgroundImage={background ? background : ''}>
+            <Box ml={variant === 'sidebar' ? 320 : 0} className='background-image' bg={!background ? 'gray.100' : ''} backgroundImage={background ? background : ''} p={6}>
                 {page}
             </Box>
         </div>

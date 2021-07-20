@@ -42,7 +42,10 @@ const getDate = (curDate, curDay, curMonth, curYear) => {
         case 6:
             day = 'Saturday'
             break
+        default:
+            console.log("Date function broken")
     }
+    
     switch(curMonth) {
         case 0:
             month = 'January'
@@ -80,6 +83,8 @@ const getDate = (curDate, curDay, curMonth, curYear) => {
         case 11:
             month = 'December'
             break
+        default:
+            console.log('Date function broken')
     }
     return `${curDate} ${day}, ${month} ${year}`
 } 

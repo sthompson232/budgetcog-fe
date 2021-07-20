@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import Landing from './components/landing/Landing'
 import Dashboard from './components/dashboard/Dashboard'
 import AppWrapper from './components/AppWrapper'
-import Settings from './components/Settings'
+import Settings from './components/settings/Settings'
 import {
   BrowserRouter as Router,
   Switch,
