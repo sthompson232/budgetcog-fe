@@ -18,3 +18,10 @@ export const setColor = (color) => {
         color: color
     }
 }
+
+export const setBackground = (id) => {
+    return {
+        type: 'SET_BACKGROUND',
+        id: id
+    }
+}

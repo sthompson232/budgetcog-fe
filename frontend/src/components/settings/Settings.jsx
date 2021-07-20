@@ -4,6 +4,7 @@ import {
     Heading,
 } from '@chakra-ui/react'
 import ColorSelector from './ColorSelector'
+import BackgroundSelector from './BackgroundSelector'
 
 
 const Settings = () => {
@@ -12,6 +13,7 @@ const Settings = () => {
             <Heading className="headings" size={'xl'} fontWeight={800} mb={2}>Settings</Heading>
             <hr />
             <ColorSelector />
+            <BackgroundSelector />
         </Box>
     )
 }

@@ -4,8 +4,8 @@ const initialState = {
     imageUrl: '',
     email: '',
     isAuthenticated: false,
-    color: '#0BC5EA',
-    background: '1'
+    color: '',
+    background: 0
 }
 
 
@@ -37,6 +37,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 color: `${action.color}.400`
+            }
+        case 'SET_BACKGROUND':
+            return {
+                ...state,
+                background: action.id
             }
         default:
             return state;
