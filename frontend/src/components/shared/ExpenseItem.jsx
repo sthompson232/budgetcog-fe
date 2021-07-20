@@ -6,13 +6,14 @@ import {
     Center,
     Heading
 } from '@chakra-ui/react'
+import { getIconColor } from '../../utils/icons'
 
 const ExpenseItem = ({ expense }) => {
     return (
         <Box my={2} p={3} bg='white' borderRadius={12} borderWidth="1px" boxShadow="sm" _hover={{ bg: "#f6f6f6", cursor: "pointer" }}>
             <Flex alignItems='center' flexWrap='wrap' justifyContent='space-between'>
                 <Flex alignItems='center' flexWrap='wrap'>
-                    <Center mr={2} borderRadius={12} bg='red' w='55px' h='55px' alignItems='center'>
+                    <Center mr={2} borderRadius={12} bg={getIconColor(expense.icon.name)} w='55px' h='55px' alignItems='center'>
                         <i className={`fas fa-2x fa-${expense.icon.icon}`} style={{ color: 'white' }}></i>
                     </Center>
                     <Box py={3} pr={2}>
