@@ -1,24 +1,22 @@
 import axios from 'axios'
 
+let headers = {
+    Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+    'Content-Type': 'application/json',
+    accept: 'application/json',
+  }  
+
 const axiosGet = (request_string) => {
     let response = axios.get(`http://localhost:8000/api/${request_string}`, {
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('access_token'),
-            'Content-Type': 'application/json',
-            accept: 'application/json',
-          }  
+        headers: headers
     })
     return response
 }
 
 
 const axiosPost = (request_string, payload) => {
-    let response = axios.get(`http://localhost:8000/api/${request_string}`, {
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('access_token'),
-            'Content-Type': 'application/json',
-            accept: 'application/json',
-          }  
+    let response = axios.post(`http://localhost:8000/api/${request_string}`, payload, {
+        headers: headers
     })
     return response
 }

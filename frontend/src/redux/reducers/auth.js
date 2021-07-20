@@ -8,6 +8,7 @@ const initialState = {
     background: '1'
 }
 
+
 const userReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'LOGIN':
@@ -19,6 +20,7 @@ const userReducer = (state = initialState, action) => {
                 email: action.payload.profileObj.email,
                 imageUrl: action.payload.profileObj.imageUrl,
                 isAuthenticated: true,
+                color: action.color
             };
         case 'LOGOUT':
             return {

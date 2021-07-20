@@ -2,15 +2,22 @@ import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from "react-redux";
 import { login } from '../../redux/actions/auth'
 import googleLogin from './googleLogin';
+import { axiosGet } from '../../utils/axios'
 
 const clientId = "410529829748-gu4huem6ecau5ni1mnn4fcq7rcmm9qmh.apps.googleusercontent.com";
 
 function Login() {
   const dispatch = useDispatch()
 
+  async function loginDispatch(res) {
+    let response = await axiosGet('color-selector/')
+    let color = `${response.data}.400`
+    dispatch(login(res, color))
+  }
+
   const onSuccess = (res) => {
     googleLogin(res.accessToken)
-    dispatch(login(res))
+    loginDispatch(res)
   };
 
   const onFailure = (res) => {
