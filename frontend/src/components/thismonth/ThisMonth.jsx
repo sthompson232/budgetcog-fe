@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { axiosGet } from '../../utils/axios'
+import { Box } from '@chakra-ui/react'
 
 const ThisMonth = () => {
+    const [expenses, setExpenses] = useState()
 
     useEffect(() => {
-        axiosGet('this-month/')
-        .then(res => console.log(res))
-    })
+        axiosGet('this-month/').then(res => setExpenses(res.data))
+    }, [])
+
     return (
-        <div>
-            <h1>This month</h1>
-        </div>
+        <Box p={4} bg='white' borderRadius={12}>
+            <div>
+            {expenses && expenses.map(expense => (
+                <div key={expense.id}>{expense.name}</div>
+            ))}
+            </div>
+        </Box>
     )
 }
 

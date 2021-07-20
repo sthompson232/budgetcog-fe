@@ -7,6 +7,7 @@ import datetime
 
 from .models import Month
 from .utils import get_month_name, get_month_and_year
+from .serializers import ExpenseSerializer
 
 
 class ColorSelector(APIView):
@@ -52,5 +53,5 @@ class ThisMonth(APIView):
         month, year = get_month_and_year()
         current_month = Month.objects.get(user=request.user, year=year, month=month)
         expenses = current_month.expense_set.all()
-        print("expenses", expenses)
-        return Response(status=status.HTTP_200_OK)
+        serializer = ExpenseSerializer(expenses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
