@@ -90,7 +90,6 @@ function BackgroundSelector() {
       <HStack {...group} flexWrap='wrap' justifyContent='start'>
         {options.map((value) => {
           const radio = getRadioProps({ value })
-          console.log(radio)
           return (
             <Box key={value} pl={radio.value === '0' ? 2 : 0} pb={2}>
             <BackgroundCard {...radio}>
