@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { 
     Box,
@@ -31,7 +32,9 @@ const Welcome = () => {
                     <Heading size={'lg'} fontWeight={800} color='white'>Good {currentHour}, {name}.👋</Heading>
                     <Text mt={2} size={'md'} color='#dddddd'>{getDate(today.getDate(), today.getDay(), today.getMonth(), today.getFullYear())}. {daysLeft()}</Text>
                 </Box>
-                <Button my={4}>Add an expense</Button>
+                <Link to='/add-expense'>
+                    <Button my={4}>Add an expense</Button>
+                </Link>
             </Flex>
         </Box>
     )
