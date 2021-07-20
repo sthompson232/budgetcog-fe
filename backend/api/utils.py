@@ -1,4 +1,7 @@
-def get_month(number):
+import datetime
+
+
+def get_month_name(number):
     if number == 1:
         return 'January'
     elif number == 2:
@@ -23,3 +26,10 @@ def get_month(number):
         return 'November'
     elif number == 12:
         return 'December'
+
+
+def get_month_and_year():
+    today = datetime.datetime.now()
+    year = int(today.year)
+    month = int(today.month)
+    return month, year
