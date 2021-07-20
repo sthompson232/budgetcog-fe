@@ -56,6 +56,8 @@ class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
   color = models.CharField(max_length=100, default='cyan')
   background = models.IntegerField(default=0)
+  budget = models.DecimalField(decimal_places=2, max_digits=10)
+  total_saved = models.DecimalField(decimal_places=2, max_digits=20)
 
   def __str__(self):
     return self.user.email

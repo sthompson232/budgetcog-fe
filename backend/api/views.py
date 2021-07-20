@@ -34,7 +34,7 @@ class BackgroundSelector(APIView):
         return Response(status=status.HTTP_200_OK)
 
 
-class GetCurrentMonth(APIView):
+class CreateMonths(APIView):
 
     def get(self, request):
         today = datetime.datetime.now()
@@ -42,6 +42,9 @@ class GetCurrentMonth(APIView):
         month = int(today.month)
         name = get_month(month)
         current_month, created = Month.objects.get_or_create(user=request.user, year=year, month=month, name=name)
+        data = {
+            "name": name,
+        }
         if created:
             return Response(status=status.HTTP_201_CREATED)
         else:
