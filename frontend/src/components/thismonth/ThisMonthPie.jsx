@@ -2,20 +2,25 @@ import React, { useState, useEffect } from 'react'
 import { Box } from '@chakra-ui/react'
 import { Pie } from 'react-chartjs-2'
 import { decimal_round } from '../../utils/sums'
+import { getIconColor, getIconHexColor } from '../../utils/icons'
 
 
 const ThisMonthPie = ({ expenses, recurring }) => {
     const [expenseName, setExpenseName] = useState([])
     const [expenseCost, setExpenseCost] = useState([])
+    const [expenseColor, setExpenseColor] = useState([])
 
     useEffect(() => {
         let expenseNames = []
         let expenseCosts = []
+        let expenseColors = []
+
         if (expenses && recurring) {
             let combined = expenses.concat(recurring)
             for (const expense of combined) {
                 if (!expenseNames.includes(expense.icon.name)) {
                     expenseNames.push(expense.icon.name)
+                    expenseColors.push(getIconHexColor(getIconColor(expense.icon.name)))
                 } 
             }
             for (const expense of combined) {
@@ -33,6 +38,7 @@ const ThisMonthPie = ({ expenses, recurring }) => {
             }
             setExpenseName(expenseNames)
             setExpenseCost(expenseCosts)
+            setExpenseColor(expenseColors)
         }
     }, [expenses, recurring])
 
@@ -42,14 +48,7 @@ const ThisMonthPie = ({ expenses, recurring }) => {
           {
             label: '# of Votes',
             data: expenseCost,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ]
+            backgroundColor: expenseColor
           },
         ],
       };

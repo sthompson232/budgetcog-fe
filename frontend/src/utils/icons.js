@@ -1,4 +1,4 @@
-export const getIconColor = (name) => {
+const getIconColor = (name) => {
     let color 
     switch(name) {
         case 'Entertainment':
@@ -18,4 +18,32 @@ export const getIconColor = (name) => {
             break
     }
     return color
+}
+
+const getIconHexColor = (name) => {
+    let color 
+    switch(name) {
+        case 'red.400':
+            color = '#F56565'
+            break
+        case 'cyan.400':
+            color = '#0BC5EA'
+            break
+        case 'orange.400':
+            color = '#ED8936'
+            break
+        case 'teal.400':
+            color = '#38B2AC'
+            break
+        default:
+            color = '#4299E1'
+            break
+    }
+    return color 
+}
+
+
+export {
+    getIconColor,
+    getIconHexColor
 }
