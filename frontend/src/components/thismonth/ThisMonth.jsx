@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import ExpenseList from './ExpenseList' 
 import ThisMonthProgress from './ThisMonthProgress'
+import ThisMonthPie from './ThisMonthPie'
 import { axiosGet } from '../../utils/axios'
 import { 
-    Box, 
     Grid,
     GridItem
 } from '@chakra-ui/react'
@@ -21,10 +21,8 @@ const ThisMonth = () => {
     return (
         <Grid templateColumns="repeat(2, 1fr)" gap={6}>
             <GridItem>
-                <ThisMonthProgress expenses={expenses} recurring={recurring}/>
-                <Box p={4} bg='white' borderRadius={12} boxShadow='md' mb={6}>
-                    <h1>Pie Chat</h1>
-                </Box>
+                <ThisMonthProgress expenses={expenses} recurring={recurring} />
+                <ThisMonthPie expenses={expenses} recurring={recurring} />
             </GridItem>
             <GridItem>
                 <ExpenseList expenses={expenses} />
