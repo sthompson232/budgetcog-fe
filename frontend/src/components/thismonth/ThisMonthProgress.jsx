@@ -33,7 +33,7 @@ const ThisMonthProgress = ({ expenses, recurring }) => {
 
 
     return (
-        <Box p={4} bg='white' borderRadius={12} boxShadow='md'>
+        <Box p={4} mb={6} bg='white' borderRadius={12} boxShadow='md'>
             <SimpleGrid columns={[1, 1, 1, 2, 1, 2]} spacing={6} textAlign='center' p={4}>
                 <Box>
                     <Heading fontWeight={800} color={color} size={'2xl'}>£{spent}</Heading>

@@ -4,7 +4,8 @@ import ThisMonthProgress from './ThisMonthProgress'
 import { axiosGet } from '../../utils/axios'
 import { 
     Box, 
-    SimpleGrid
+    Grid,
+    GridItem
 } from '@chakra-ui/react'
 
 
@@ -18,14 +19,18 @@ const ThisMonth = () => {
     }, [])
 
     return (
-        <SimpleGrid columns={[1, 1, 2, 1, 2]} spacing={6}>
-            <ThisMonthProgress expenses={expenses} recurring={recurring}/>
-            <ExpenseList expenses={expenses} />
-            <Box p={4} bg='white' borderRadius={12} boxShadow='md'>
-                <h1>Pie Chat</h1>
-            </Box>
-            <ExpenseList expenses={recurring} recurring />
-        </SimpleGrid>
+        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+            <GridItem>
+                <ThisMonthProgress expenses={expenses} recurring={recurring}/>
+                <Box p={4} bg='white' borderRadius={12} boxShadow='md' mb={6}>
+                    <h1>Pie Chat</h1>
+                </Box>
+            </GridItem>
+            <GridItem>
+                <ExpenseList expenses={expenses} />
+                <ExpenseList expenses={recurring} recurring />
+            </GridItem>
+        </Grid>
     )
 }
 
