@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 import datetime
+from decimal import Decimal
 
 from .models import Month, Expense
 from users.models import Profile
@@ -22,7 +23,15 @@ class UserProfile(APIView):
 class Budget(APIView):
 
     def post(self, request):
-        request.user.profile.budget = request.data
+        request.user.profile.budget = Decimal(request.data)
+        request.user.profile.save()
+        return Response(status=status.HTTP_200_OK)
+
+
+class Goal(APIView):
+
+    def post(self, request):
+        request.user.profile.goal = Decimal(request.data) 
         request.user.profile.save()
         return Response(status=status.HTTP_200_OK)
 

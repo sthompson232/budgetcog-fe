@@ -10,29 +10,29 @@ import {
 } from '@chakra-ui/react'
 import { useSelector, useDispatch } from 'react-redux'
 import { axiosPost } from '../../utils/axios'
-import { updateBudget } from '../../redux/actions/user'
+import { updateGoal } from '../../redux/actions/user'
 
-const BudgetForm = () => {
+const GoalForm = () => {
     const dispatch = useDispatch()
-    const budget = useSelector(state => {return state.user.budget})
-    const [value, setValue] = useState(budget)
+    const goal = useSelector(state => {return state.user.goal})
+    const [value, setValue] = useState(goal)
 
     const format = (val) => `£` + val
     const parse = (val) => val.replace(/^£/, "")
 
     useEffect(() => {
-        axiosPost('budget/', value)
-        dispatch(updateBudget(value))
+        axiosPost('goal/', value)
+        dispatch(updateGoal(value))
     }, [value, dispatch])
 
     return (
         <Box my={6}>
-            <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Set your monthly budget</Heading>
+            <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Set your goal</Heading>
             <NumberInput
                 maxWidth='400px'
                 onChange={(valueString) => setValue(parse(valueString))}
                 value={format(value)}
-                max={50000}
+                max={1000000}
                 precision={2}
                 step={1}
             >
@@ -46,4 +46,4 @@ const BudgetForm = () => {
     )
 }
 
-export default BudgetForm
+export default GoalForm

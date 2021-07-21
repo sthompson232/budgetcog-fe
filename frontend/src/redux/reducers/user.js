@@ -7,6 +7,7 @@ const initialState = {
     color: '',
     background: 0,
     budget: 0.00,
+    goal: 0.00,
     total_saved: 0.00,
 }
 
@@ -55,6 +56,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 budget: action.payload
+            }
+        case 'UPDATE_GOAL':
+            return {
+                ...state,
+                goal: action.payload
             }
         default:
             return state;

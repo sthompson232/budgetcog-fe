@@ -32,3 +32,10 @@ export const updateBudget = (value) => {
         payload: value
     }
 }
+
+export const updateGoal =(value) => {
+    return {
+        type: 'UPDATE_GOAL',
+        payload: value
+    }
+}

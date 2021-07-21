@@ -6,6 +6,7 @@ import {
 import ColorSelector from './ColorSelector'
 import BackgroundSelector from './BackgroundSelector'
 import BudgetForm from '../shared/BudgetForm'
+import GoalForm from '../shared/GoalForm'
 
 
 const Settings = () => {
@@ -14,6 +15,7 @@ const Settings = () => {
             <Heading className="headings" size={'xl'} fontWeight={800} mb={2}>Settings</Heading>
             <hr />
             <BudgetForm />
+            <GoalForm />
             <ColorSelector />
             <BackgroundSelector />
         </Box>
