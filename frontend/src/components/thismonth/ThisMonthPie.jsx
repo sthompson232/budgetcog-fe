@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box } from '@chakra-ui/react'
 import { Pie } from 'react-chartjs-2'
 import { decimal_round } from '../../utils/sums'
 
 
 const ThisMonthPie = ({ expenses, recurring }) => {
-    let expenseNames = []
-    let expenseCosts = []
+    const [expenseName, setExpenseName] = useState([])
+    const [expenseCost, setExpenseCost] = useState([])
 
     useEffect(() => {
+        let expenseNames = []
+        let expenseCosts = []
         if (expenses && recurring) {
             let combined = expenses.concat(recurring)
             for (const expense of combined) {
@@ -29,16 +31,17 @@ const ThisMonthPie = ({ expenses, recurring }) => {
                     }
                 }
             }
-            console.log(expenseNames, expenseCosts)
+            setExpenseName(expenseNames)
+            setExpenseCost(expenseCosts)
         }
     }, [expenses, recurring])
 
     const data = {
-        labels: expenseNames,
+        labels: expenseName,
         datasets: [
           {
             label: '# of Votes',
-            data: expenseCosts,
+            data: expenseCost,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
