@@ -6,6 +6,7 @@ import Settings from './components/settings/Settings'
 import ThisMonth from "./components/thismonth/ThisMonth"
 import PastMonths from "./components/pastmonths/PastMonths"
 import AddExpense from "./components/addexpense/AddExpense"
+import RecurringExpenses from "./components/RecurringExpenses"
 import {
   BrowserRouter as Router,
   Switch,
@@ -35,6 +36,9 @@ const App = () => {
             </Route>
             <Route exact path="/add-expense">
               <AppWrapper page={<AddExpense />} />
+            </Route>
+            <Route exact path="/recurring-expenses">
+              <AppWrapper page={<RecurringExpenses />} />
             </Route>
           </Switch>
         :

@@ -5,7 +5,7 @@ from rest_framework import status
 
 import datetime
 
-from .models import Month
+from .models import Month, Expense
 from .utils import get_month_name, get_month_and_year
 from .serializers import ExpenseSerializer
 
@@ -47,11 +47,19 @@ class CreateMonths(APIView):
             return Response(status=status.HTTP_200_OK)
 
 
-class ThisMonth(APIView):
+class ThisMonthExpenses(APIView):
 
     def get(self, request):
         month, year = get_month_and_year()
         current_month = Month.objects.get(user=request.user, year=year, month=month)
         expenses = current_month.expense_set.all()
         serializer = ExpenseSerializer(expenses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class RecurringExpenses(APIView):
+
+    def get(self, request):
+        recurring = Expense.objects.filter(user=request.user, recurring=True)
+        serializer = ExpenseSerializer(recurring, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

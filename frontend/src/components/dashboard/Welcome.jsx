@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { 
     Box,
     Heading,
     Text,
-    Button,
     Flex
 } from '@chakra-ui/react'
 import { getDate, daysLeft } from '../../utils/date'
 import image from '../../static/images/magic.jpg'
+import AddExpenseButton from '../shared/AddExpenseButton'
 
 
 const Welcome = () => {
@@ -32,9 +31,7 @@ const Welcome = () => {
                     <Heading size={'lg'} fontWeight={800} color='white'>Good {currentHour}, {name}.👋</Heading>
                     <Text mt={2} size={'md'} color='#dddddd'>{getDate(today.getDate(), today.getDay(), today.getMonth(), today.getFullYear())}. {daysLeft()}</Text>
                 </Box>
-                <Link to='/add-expense'>
-                    <Button my={4}>Add an expense</Button>
-                </Link>
+                <AddExpenseButton recurring={false} />
             </Flex>
         </Box>
     )
