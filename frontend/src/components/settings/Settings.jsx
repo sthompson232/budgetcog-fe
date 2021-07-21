@@ -5,6 +5,7 @@ import {
 } from '@chakra-ui/react'
 import ColorSelector from './ColorSelector'
 import BackgroundSelector from './BackgroundSelector'
+import BudgetForm from '../shared/BudgetForm'
 
 
 const Settings = () => {
@@ -12,6 +13,7 @@ const Settings = () => {
         <Box p={4} bg='white' borderRadius={12}>
             <Heading className="headings" size={'xl'} fontWeight={800} mb={2}>Settings</Heading>
             <hr />
+            <BudgetForm />
             <ColorSelector />
             <BackgroundSelector />
         </Box>

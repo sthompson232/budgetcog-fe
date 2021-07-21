@@ -8,4 +8,5 @@ urlpatterns = [
     path('this-month-expenses/', views.ThisMonthExpenses.as_view(), name='this-month-expenses'),
     path('recurring-expenses/', views.RecurringExpenses.as_view(), name='recurring-expenses'),
     path('user-profile/', views.UserProfile.as_view(), name='user-profile'),
+    path('budget/', views.Budget.as_view(), name='budget')
 ]

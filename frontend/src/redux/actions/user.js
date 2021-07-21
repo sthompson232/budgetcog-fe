@@ -25,3 +25,10 @@ export const setBackground = (id) => {
         id: id
     }
 }
+
+export const updateBudget = (value) => {
+    return {
+        type: 'UPDATE_BUDGET',
+        payload: value
+    }
+}

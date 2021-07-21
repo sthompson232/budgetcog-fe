@@ -19,6 +19,14 @@ class UserProfile(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class Budget(APIView):
+
+    def post(self, request):
+        request.user.profile.budget = request.data
+        request.user.profile.save()
+        return Response(status=status.HTTP_200_OK)
+
+
 class ColorSelector(APIView):
 
     def get(self, request):

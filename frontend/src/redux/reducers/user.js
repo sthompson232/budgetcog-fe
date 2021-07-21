@@ -51,6 +51,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 background: action.id
             }
+        case 'UPDATE_BUDGET':
+            return {
+                ...state,
+                budget: action.payload
+            }
         default:
             return state;
     }
