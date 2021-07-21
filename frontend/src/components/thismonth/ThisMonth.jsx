@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ExpenseList from './ExpenseList' 
+import ThisMonthProgress from './ThisMonthProgress'
 import { axiosGet } from '../../utils/axios'
 import { 
     Box, 
@@ -18,12 +19,10 @@ const ThisMonth = () => {
 
     return (
         <SimpleGrid columns={[1, 1, 2, 1, 2]} spacing={6}>
+            <ThisMonthProgress />
+            <ExpenseList expenses={expenses} />
             <Box p={4} bg='white' borderRadius={12} boxShadow='md'>
                 <h1>Pie Chat</h1>
-            </Box>
-            <ExpenseList expenses={expenses} />
-            <Box>
-
             </Box>
             <ExpenseList expenses={recurring} recurring />
         </SimpleGrid>

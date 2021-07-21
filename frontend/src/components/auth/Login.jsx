@@ -11,7 +11,7 @@ function Login() {
 
   async function loginDispatch(res) {
     let response = await axiosGet('color-selector/')
-    let color = `${response.data}.400`
+    let color = response.data
     dispatch(login(res, color))
   }
 

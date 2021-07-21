@@ -31,12 +31,13 @@ const userReducer = (state = initialState, action) => {
                 email: '',
                 imageUrl: '',
                 color: '',
+                background: 0,
                 isAuthenticated: false,
             }
         case 'SET_COLOR':
             return {
                 ...state,
-                color: `${action.color}.400`
+                color: action.color
             }
         case 'SET_BACKGROUND':
             return {
