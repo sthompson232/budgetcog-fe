@@ -10,7 +10,7 @@ import AddExpenseButton from '../shared/AddExpenseButton'
 const ExpenseList = ({ expenses, recurring }) => {
     return (
         <Box p={4} bg='white' borderRadius={12} boxShadow='md'>
-            <Flex justifyContent='space-between' alignItems='center' mb={4}>
+            <Flex justifyContent='space-between' alignItems='center' mb={4} flexWrap='wrap'>
                 <Heading className="headings" fontWeight={800} size={'lg'}>{recurring ? 'Recurring' : 'Expenses'}</Heading>
                 <AddExpenseButton recurring={recurring} />
             </Flex>

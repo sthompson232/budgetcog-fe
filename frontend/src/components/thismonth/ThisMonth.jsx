@@ -19,7 +19,7 @@ const ThisMonth = () => {
 
     return (
         <SimpleGrid columns={[1, 1, 2, 1, 2]} spacing={6}>
-            <ThisMonthProgress />
+            <ThisMonthProgress expenses={expenses} recurring={recurring}/>
             <ExpenseList expenses={expenses} />
             <Box p={4} bg='white' borderRadius={12} boxShadow='md'>
                 <h1>Pie Chat</h1>
