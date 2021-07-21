@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import { axiosGet, axiosPost } from '../../utils/axios'
 import { useDispatch } from 'react-redux'
-import { setColor } from '../../redux/actions/auth'
+import { setColor } from '../../redux/actions/user'
 
 
 function ColorCard(props) {

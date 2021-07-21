@@ -1,6 +1,6 @@
 import { GoogleLogout } from 'react-google-login';
 import { useDispatch } from "react-redux";
-import { logout } from '../../redux/actions/auth'
+import { logout } from '../../redux/actions/user'
 
 const clientId = "410529829748-gu4huem6ecau5ni1mnn4fcq7rcmm9qmh.apps.googleusercontent.com";
 

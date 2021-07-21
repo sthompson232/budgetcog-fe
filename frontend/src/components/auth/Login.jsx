@@ -1,6 +1,6 @@
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from "react-redux";
-import { login } from '../../redux/actions/auth'
+import { login } from '../../redux/actions/user'
 import googleLogin from './googleLogin';
 import { axiosGet } from '../../utils/axios'
 
@@ -10,9 +10,10 @@ function Login() {
   const dispatch = useDispatch()
 
   async function loginDispatch(res) {
-    let response = await axiosGet('color-selector/')
-    let color = response.data
-    dispatch(login(res, color))
+    let response = await axiosGet('user-profile/')
+    console.log("response", response)
+    let profile = response.data
+    dispatch(login(res, profile))
   }
 
   const onSuccess = (res) => {

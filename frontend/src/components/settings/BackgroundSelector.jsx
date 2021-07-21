@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import { axiosGet, axiosPost } from '../../utils/axios'
 import { useDispatch } from 'react-redux'
-import { setBackground } from '../../redux/actions/auth'
+import { setBackground } from '../../redux/actions/user'
 import pattern1 from '../../static/images/pattern1.jpg'
 import pattern2 from '../../static/images/pattern2.jpg'
 

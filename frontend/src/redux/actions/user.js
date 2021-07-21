@@ -1,8 +1,8 @@
-export const login = (payload, color) => {
+export const login = (payload, profile) => {
     return {
         type: 'LOGIN',
         payload: payload,
-        color: color
+        profile: profile
     }
 }
 

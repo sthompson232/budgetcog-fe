@@ -5,7 +5,9 @@ const initialState = {
     email: '',
     isAuthenticated: false,
     color: '',
-    background: 0
+    background: 0,
+    budget: 0.00,
+    total_saved: 0.00,
 }
 
 
@@ -20,7 +22,10 @@ const userReducer = (state = initialState, action) => {
                 email: action.payload.profileObj.email,
                 imageUrl: action.payload.profileObj.imageUrl,
                 isAuthenticated: true,
-                color: action.color
+                color: action.profile.color,
+                background: action.profile.background,
+                budget: action.profile.budget,
+                total_saved: action.profile.total_saved
             };
         case 'LOGOUT':
             return {
@@ -30,9 +35,11 @@ const userReducer = (state = initialState, action) => {
                 fullName: '',
                 email: '',
                 imageUrl: '',
+                isAuthenticated: false,
                 color: '',
                 background: 0,
-                isAuthenticated: false,
+                budget: 0,
+                total_saved: 0
             }
         case 'SET_COLOR':
             return {

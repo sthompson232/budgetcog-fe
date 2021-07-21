@@ -7,4 +7,5 @@ urlpatterns = [
     path('get-current-month/', views.CreateMonths.as_view(), name='get-current-month'),
     path('this-month-expenses/', views.ThisMonthExpenses.as_view(), name='this-month-expenses'),
     path('recurring-expenses/', views.RecurringExpenses.as_view(), name='recurring-expenses'),
+    path('user-profile/', views.UserProfile.as_view(), name='user-profile'),
 ]

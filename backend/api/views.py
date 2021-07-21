@@ -6,8 +6,17 @@ from rest_framework import status
 import datetime
 
 from .models import Month, Expense
+from users.models import Profile
 from .utils import get_month_name, get_month_and_year
-from .serializers import ExpenseSerializer
+from .serializers import ExpenseSerializer, ProfileSerializer
+
+
+class UserProfile(APIView):
+
+    def get(self, request):
+        profile = Profile.objects.get(user=request.user)
+        serializer = ProfileSerializer(profile, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ColorSelector(APIView):
