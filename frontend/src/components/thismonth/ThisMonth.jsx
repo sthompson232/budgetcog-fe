@@ -5,13 +5,15 @@ import ThisMonthPie from './ThisMonthPie'
 import { axiosGet } from '../../utils/axios'
 import { 
     Grid,
-    GridItem
+    GridItem,
+    useBreakpointValue
 } from '@chakra-ui/react'
 
 
 const ThisMonth = () => {
     const [expenses, setExpenses] = useState()
     const [recurring, setRecurring] = useState()
+    const variant = useBreakpointValue({ base: '1', md: '2', lg: '1', xl: '2' })
 
     useEffect(() => {
         axiosGet('this-month-expenses/').then(res => setExpenses(res.data))
@@ -19,7 +21,7 @@ const ThisMonth = () => {
     }, [])
 
     return (
-        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+        <Grid templateColumns={`repeat(${variant}, 1fr)`} gap={6}>
             <GridItem>
                 <ThisMonthProgress expenses={expenses} recurring={recurring} />
                 <ThisMonthPie expenses={expenses} recurring={recurring} />

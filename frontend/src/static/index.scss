@@ -55,7 +55,30 @@ p {
 .chart-container {
     position: relative;
     margin: auto;
-    max-width: 40vw;
-    min-width: 10vw;
-    max-height: 100vh;
+    max-width: 70vw;
+    max-height: 100%;
+}
+
+@media screen and (min-width: 24rem) {
+    .chart-container {
+        max-width: 50vw;
+    }
+}
+
+@media screen and (min-width: 30rem) {
+    .chart-container {
+        max-width: 80vw;
+    }
+}
+
+@media screen and (min-width: 48rem) {
+    .chart-container {
+        max-width: 50vw;
+    }
+}
+
+@media screen and (min-width: 62rem) {
+    .chart-container {
+        max-width: 30vw;
+    }
 }
