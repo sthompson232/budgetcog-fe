@@ -4,13 +4,24 @@ import {
     Flex,
     Text,
     Center,
-    Heading
+    Heading,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalCloseButton,
+    ModalBody,
+    ModalHeader,
+    useDisclosure
 } from '@chakra-ui/react'
 import { getIconColor } from '../../utils/icons'
+import ExpenseForm from './ExpenseForm';
+
 
 const ExpenseItem = ({ expense }) => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
-        <Box my={2} p={3} bg='white' borderRadius={12} borderWidth="1px" boxShadow="sm" _hover={{ bg: "#f6f6f6", cursor: "pointer" }}>
+        <Box onClick={onOpen} my={2} p={3} bg='white' borderRadius={12} borderWidth="1px" boxShadow="sm" _hover={{ bg: "#f6f6f6", cursor: "pointer" }}>
             <Flex alignItems='center' flexWrap='wrap' justifyContent='space-between'>
                 <Flex alignItems='center' flexWrap='wrap'>
                     <Center mr={2} borderRadius={12} bg={getIconColor(expense.icon.name)} w='55px' h='55px' alignItems='center'>
@@ -29,6 +40,21 @@ const ExpenseItem = ({ expense }) => {
                     {expense.date}
                 </Box>
             </Flex>
+
+            <Modal
+                isCentered
+                isOpen={isOpen}
+                onClose={onClose}
+            >
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader><Heading mt={4} fontWeight={900}>Update your expense</Heading></ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                        <ExpenseForm expense={expense} />
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </Box>
     )
 }

@@ -89,3 +89,18 @@ class RecurringExpenses(APIView):
         recurring = Expense.objects.filter(user=request.user, recurring=True)
         serializer = ExpenseSerializer(recurring, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class SingleExpense(APIView):
+
+    def get(self, request):
+        pass
+
+    def post(self, request):
+        expense = Expense.objects.get(id=request.data['id'])
+        expense.name = request.data['name']
+        expense.date = request.data['date']
+        expense.cost = request.data['cost']
+        expense.category = request.data['category']
+        expense.save()
+        return Response(status=status.HTTP_200_OK)
