@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
     font-weight: 900;
@@ -46,4 +50,12 @@ p {
 
 .fa-bars:hover {
     transform: scale(1.2);
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    max-width: 40vw;
+    min-width: 10vw;
+    max-height: 100vh;
 }
