@@ -33,7 +33,7 @@ const ThisMonthProgress = ({ expenses, recurring }) => {
     useEffect(() => {
         if (spent && budget) {
             setPercent(calculate_percentage(spent, budget))
-            setRemaining(decimal_round((budget - spent)))
+            setRemaining(decimal_round((budget - spent)).toFixed(2))
         }
     }, [budget, spent])
 
