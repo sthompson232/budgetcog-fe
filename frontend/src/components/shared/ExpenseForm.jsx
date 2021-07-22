@@ -37,10 +37,8 @@ const ExpenseForm = ({ expense, updateData }) => {
             "cost": cost,
             "category": category
         })
-        .then((res) => {
-            setSubmitting(!(res.status === 200));
-            updateData();
-        })
+        .then(() => updateData())
+        .then(() => setSubmitting(false))
     }
 
     useEffect(() => {
