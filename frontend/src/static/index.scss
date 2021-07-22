@@ -95,8 +95,14 @@ p {
   .react-datepicker__navigation--previous,
   .react-datepicker__navigation--next {
     height: 40px;
+    display: none;
   }
   
+  .react-datepicker__day--outside-month {
+    pointer-events: none;
+    color: white;
+  }
+
   .react-datepicker__navigation--previous {
     border-right-color: #cbd5e0;
   

@@ -11,4 +11,5 @@ urlpatterns = [
     path('budget/', views.Budget.as_view(), name='budget'),
     path('goal/', views.Goal.as_view(), name='goal'),
     path('expense/', views.SingleExpense.as_view(), name='expense'),
+    path('get-categories/', views.GetCategories.as_view(), name='get-categories'),
 ]

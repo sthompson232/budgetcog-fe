@@ -6,10 +6,10 @@ from rest_framework import status
 import datetime
 from decimal import Decimal
 
-from .models import Month, Expense
+from .models import Month, Expense, Category
 from users.models import Profile
 from .utils import get_month_name, get_month_and_year
-from .serializers import ExpenseSerializer, ProfileSerializer
+from .serializers import ExpenseSerializer, ProfileSerializer, CategorySerializer
 
 
 class UserProfile(APIView):
@@ -99,8 +99,16 @@ class SingleExpense(APIView):
     def post(self, request):
         expense = Expense.objects.get(id=request.data['id'])
         expense.name = request.data['name']
-        expense.date = request.data['date']
+        expense.date = datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000))
         expense.cost = request.data['cost']
-        expense.category = request.data['category']
+        expense.category = Category.objects.get(name=request.data['category'])
         expense.save()
         return Response(status=status.HTTP_200_OK)
+
+
+class GetCategories(APIView):
+
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CategorySerializer(categories, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
