@@ -9,22 +9,28 @@ import {
     useBreakpointValue
 } from '@chakra-ui/react'
 import { useParams } from "react-router-dom";
+import { getMonthAndYear } from '../../utils/date'
 
 
 const ThisMonth = () => {
     const date = useParams()
     const [expenses, setExpenses] = useState()
     const [recurring, setRecurring] = useState()
+    const { month, year } = getMonthAndYear()
     const variant = useBreakpointValue({ base: '1', md: '2', lg: '1', xl: '2' })
 
     useEffect(() => {
         axiosGet(`this-month-expenses/?month=${date.month}&year=${date.year}`).then(res => setExpenses(res.data))
-        axiosGet(`recurring-expenses/?month=${date.month}&year=${date.year}`).then(res => setRecurring(res.data))
-    }, [date])
+        if (month === parseInt(date.month) && year === parseInt(date.year)) {
+            axiosGet(`recurring-expenses/?month=${date.month}&year=${date.year}`).then(res => setRecurring(res.data))
+        }
+    }, [date, month, year])
 
     const updateData = () => {
         axiosGet(`this-month-expenses/?month=${date.month}&year=${date.year}`).then(res => setExpenses(res.data))
-        axiosGet(`recurring-expenses/?month=${date.month}&year=${date.year}`).then(res => setRecurring(res.data))
+        if (month === parseInt(date.month) && year === parseInt(date.year)) {
+            axiosGet(`recurring-expenses/?month=${date.month}&year=${date.year}`).then(res => setRecurring(res.data))
+        }
     }
 
     return (
@@ -35,7 +41,9 @@ const ThisMonth = () => {
             </GridItem>
             <GridItem>
                 <ExpenseList expenses={expenses} updateData={updateData} />
+                {recurring &&
                 <ExpenseList expenses={recurring} recurring updateData={updateData} />
+                }
             </GridItem>
         </Grid>
     )

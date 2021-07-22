@@ -18,10 +18,13 @@ from .serializers import ExpenseSerializer, ProfileSerializer, CategorySerialize
 class ThisMonthExpenses(APIView):
 
     def get(self, request):
-        month = request.GET.get('month')
-        year = request.GET.get('year')
-        current_month = Month.objects.get(user=request.user, year=year, month=month)
-        expenses = current_month.expense_set.all()
+        if request.GET.get('month') and request.GET.get('year'):
+            month = request.GET.get('month')
+            year = request.GET.get('year')
+        else:
+            month, year = get_month_and_year()
+        selected_month = Month.objects.get(user=request.user, year=year, month=month)
+        expenses = selected_month.expense_set.all()
         serializer = ExpenseSerializer(expenses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -29,7 +32,17 @@ class ThisMonthExpenses(APIView):
 class RecurringExpenses(APIView):
 
     def get(self, request):
-        recurring = Expense.objects.filter(user=request.user, recurring=True)
+        current_month, current_year = get_month_and_year()
+        query_month = request.GET.get('month')
+        query_year = request.GET.get('year')
+        if query_month and query_year:
+            if int(query_month) == current_month and int(query_year) == current_year:
+                recurring = Expense.objects.filter(user=request.user, recurring=True)
+            else:
+                recurring = Expense.objects.none()
+        else:
+            recurring = Expense.objects.filter(user=request.user, recurring=True)
+
         serializer = ExpenseSerializer(recurring, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

@@ -7,7 +7,7 @@ const total_expense = (expenses, recurring) => {
     for (const recur of recurring) {
         total += parseFloat(recur.cost)
     }
-    return total 
+    return total
 }
 
 const calculate_percentage = (number, total) => {

@@ -15,8 +15,13 @@ const ThisMonthPie = ({ expenses, recurring }) => {
         let expenseCosts = []
         let expenseColors = []
 
-        if (expenses && recurring) {
-            let combined = expenses.concat(recurring)
+        if (expenses) {
+            let combined
+            if (recurring) {
+                combined = expenses.concat(recurring)
+            } else {
+                combined = expenses
+            }
             for (const expense of combined) {
                 if (!expenseNames.includes(expense.icon.name)) {
                     expenseNames.push(expense.icon.name)
@@ -55,13 +60,12 @@ const ThisMonthPie = ({ expenses, recurring }) => {
 
     return (
         <>
-        {expenses && recurring ?
+        {expenses &&
         <Box p={4} bg='white' borderRadius={12} boxShadow='md' >
             <Box className="chart-container">
                 <Pie data={data} />  
             </Box>
         </Box>
-        : ''
         }
         </>
     )

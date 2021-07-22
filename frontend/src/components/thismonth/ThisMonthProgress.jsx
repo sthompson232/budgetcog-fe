@@ -19,8 +19,14 @@ const ThisMonthProgress = ({ expenses, recurring }) => {
 
     useEffect(() => {
         if (expenses && recurring) {
-            const total = total_expense(expenses, recurring)
-            setSpent(total)
+            let total = total_expense(expenses, recurring)
+            setSpent(total.toFixed(2))
+        } else if (expenses) {
+            let total = 0
+            for (const expense of expenses) {
+                total += parseFloat(expense.cost)
+            }
+            setSpent(total.toFixed(2))
         }
     }, [expenses, recurring])
 
