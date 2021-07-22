@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { 
-    Box,
-    Heading     
-} from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { Pie } from 'react-chartjs-2'
 import { decimal_round } from '../../utils/sums'
 import { getIconColor, getIconHexColor } from '../../utils/icons'
@@ -60,7 +57,6 @@ const ThisMonthPie = ({ expenses, recurring }) => {
         <>
         {expenses && recurring ?
         <Box p={4} bg='white' borderRadius={12} boxShadow='md' >
-            <Heading className="headings" fontWeight={800} size={'lg'} mb={2}>Your month so far...</Heading>
             <Box className="chart-container">
                 <Pie data={data} />  
             </Box>

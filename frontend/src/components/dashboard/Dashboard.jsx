@@ -47,7 +47,7 @@ const Dashboard = () => {
             </SimpleGrid>
             <SimpleGrid columns={[1, 1, 1, 1, 3, 3]} spacing={6}>
                 <GoalProgress total_saved={total_saved} goal={goal} color={color} />
-                <PastMonthsBar months={pastMonths} />
+                <PastMonthsBar months={pastMonths} color={color} />
                 <ThisMonthPie expenses={currentExpenses} recurring={currentRecurring} />
             </SimpleGrid>
         </Box>

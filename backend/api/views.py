@@ -79,7 +79,7 @@ class GetCurrentMonth(APIView):
 class GetPastMonths(APIView):
 
     def get(self, request):
-        months = Month.objects.filter(user=request.user)
+        months = Month.objects.filter(user=request.user).order_by('date_created')
         serializer = MonthSerializer(months, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
