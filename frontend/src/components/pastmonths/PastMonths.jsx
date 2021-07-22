@@ -1,10 +1,21 @@
-import React from 'react'
+import { SimpleGrid } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import { axiosGet } from '../../utils/axios'
+import MonthTile from './MonthTile'
 
 const PastMonths = () => {
+    const [pastMonths, setPastMonths] = useState([])
+
+    useEffect(() => {
+        axiosGet('get-past-months/').then(res => setPastMonths(res.data))
+    }, [])
+
     return (
-        <div>
-            <h1>Past Months</h1>
-        </div>
+        <SimpleGrid spacing={6}>
+            {pastMonths && pastMonths.map(month => (
+                <MonthTile key={month.id} month={month} />
+            ))}
+        </SimpleGrid>
     )
 }
 
