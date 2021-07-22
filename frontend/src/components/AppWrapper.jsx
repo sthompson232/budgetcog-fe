@@ -13,7 +13,7 @@ const AppWrapper = ({page}) => {
     const variant = useBreakpointValue({ base: 'drawer', lg: 'sidebar'})
 
     useEffect(() => {
-        axiosGet('get-current-month/')
+        axiosGet('update-current-month/')
     }, [])
 
     useEffect(() => {

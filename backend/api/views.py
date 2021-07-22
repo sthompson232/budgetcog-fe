@@ -9,8 +9,83 @@ from decimal import Decimal
 from .models import Month, Expense, Category
 from users.models import Profile
 from .utils import get_month_name, get_month_and_year
-from .serializers import ExpenseSerializer, ProfileSerializer, CategorySerializer
+from .serializers import ExpenseSerializer, ProfileSerializer, CategorySerializer, MonthSerializer
 
+
+##############################################################################################################
+# EXPENSES
+
+class ThisMonthExpenses(APIView):
+
+    def get(self, request):
+        month, year = get_month_and_year()
+        current_month = Month.objects.get(user=request.user, year=year, month=month)
+        expenses = current_month.expense_set.all()
+        serializer = ExpenseSerializer(expenses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class RecurringExpenses(APIView):
+
+    def get(self, request):
+        recurring = Expense.objects.filter(user=request.user, recurring=True)
+        serializer = ExpenseSerializer(recurring, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class SingleExpense(APIView):
+
+    def get(self, request):
+        pass
+
+    def post(self, request):
+        expense = Expense.objects.get(id=request.data['id'])
+        cost_difference = expense.cost - Decimal(request.data['cost'])
+        expense.month.expense_total -= cost_difference
+        expense.month.save()
+        expense.name = request.data['name']
+        expense.date = datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000))
+        expense.cost = Decimal(request.data['cost'])
+        expense.category = Category.objects.get(name=request.data['category'])
+        expense.save()
+        return Response(status=status.HTTP_200_OK)
+
+
+##############################################################################################################
+# MONTHS
+
+class CreateMonths(APIView):
+
+    def get(self, request):
+        month, year = get_month_and_year()
+        name = get_month_name(month)
+        current_month, created = Month.objects.get_or_create(user=request.user, year=year, month=month, name=name)
+
+        if created:
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_200_OK)
+
+
+class GetCurrentMonth(APIView):
+
+    def get(self, request):
+        month, year = get_month_and_year()
+        current = Month.objects.get(user=request.user, year=year, month=month)
+        serializer = MonthSerializer(current, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class GetPastMonths(APIView):
+
+    def get(self, request):
+        months = Month.objects.filter(user=request.user)
+        serializer = MonthSerializer(months, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+##############################################################################################################
+# PROFILE
 
 class UserProfile(APIView):
 
@@ -60,51 +135,8 @@ class BackgroundSelector(APIView):
         return Response(status=status.HTTP_200_OK)
 
 
-class CreateMonths(APIView):
-
-    def get(self, request):
-        month, year = get_month_and_year()
-        name = get_month_name(month)
-        current_month, created = Month.objects.get_or_create(user=request.user, year=year, month=month, name=name)
-
-        if created:
-            return Response(status=status.HTTP_201_CREATED)
-        else:
-            return Response(status=status.HTTP_200_OK)
-
-
-class ThisMonthExpenses(APIView):
-
-    def get(self, request):
-        month, year = get_month_and_year()
-        current_month = Month.objects.get(user=request.user, year=year, month=month)
-        expenses = current_month.expense_set.all()
-        serializer = ExpenseSerializer(expenses, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-class RecurringExpenses(APIView):
-
-    def get(self, request):
-        recurring = Expense.objects.filter(user=request.user, recurring=True)
-        serializer = ExpenseSerializer(recurring, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-class SingleExpense(APIView):
-
-    def get(self, request):
-        pass
-
-    def post(self, request):
-        expense = Expense.objects.get(id=request.data['id'])
-        expense.name = request.data['name']
-        expense.date = datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000))
-        expense.cost = request.data['cost']
-        expense.category = Category.objects.get(name=request.data['category'])
-        expense.save()
-        return Response(status=status.HTTP_200_OK)
-
+##############################################################################################################
+# CATEGORIES
 
 class GetCategories(APIView):
 

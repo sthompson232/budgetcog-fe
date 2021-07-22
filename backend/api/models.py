@@ -13,6 +13,7 @@ class Month(models.Model):
     name = models.CharField(max_length=100)
     month = models.IntegerField()
     year = models.IntegerField()
+    expense_total = models.DecimalField(decimal_places=2, max_digits=8, default=0.00)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
 
