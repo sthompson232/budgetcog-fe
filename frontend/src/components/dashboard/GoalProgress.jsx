@@ -14,7 +14,7 @@ const GoalProgress = ({ total_saved, goal, color }) => {
         <Box p={4} bg='white' borderRadius={12} boxShadow='md'>
             <Heading className="headings" fontWeight={800} size={'lg'} mb={2}>Your goal progress...</Heading>
             <Center h='88%'>
-                <CircularProgress value={calculate_percentage(total_saved, goal)} size='15rem' thickness="10px" color={color} />
+                <CircularProgress value={calculate_percentage(total_saved, goal)} size='15rem' thickness="10px" color={`${color}.500`} />
             </Center>
         </Box>
     )

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Box } from '@chakra-ui/react'
 import { Bar } from 'react-chartjs-2'
+import { getIconHexColor } from '../../utils/icons'
 
 
 const PastMonthsBar = ({ months, color }) => {
@@ -27,7 +28,7 @@ const PastMonthsBar = ({ months, color }) => {
           {
             label: '£ Spent',
             data: spent.slice(-1 * 5),
-            backgroundColor: [color]
+            backgroundColor: [getIconHexColor(color)]
           },
         ],
       };

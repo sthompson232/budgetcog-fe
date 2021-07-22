@@ -2,19 +2,19 @@ const getIconColor = (name) => {
     let color 
     switch(name) {
         case 'Entertainment':
-            color = 'red.400'
+            color = 'red.500'
             break
         case 'Eating Out':
-            color = 'cyan.400'
+            color = 'cyan.500'
             break
         case 'Bills':
-            color = 'orange.400'
+            color = 'orange.500'
             break
         case 'Rent':
-            color = 'teal.400'
+            color = 'teal.500'
             break
         default:
-            color = 'blue.400'
+            color = 'blue.500'
             break
     }
     return color
@@ -23,20 +23,50 @@ const getIconColor = (name) => {
 const getIconHexColor = (name) => {
     let color 
     switch(name) {
-        case 'red.400':
-            color = '#F56565'
+        case 'red.500':
+            color = '#E53E3E'
             break
-        case 'cyan.400':
-            color = '#0BC5EA'
+        case 'red':
+            color = '#E53E3E'
             break
-        case 'orange.400':
-            color = '#ED8936'
+        case 'cyan.500':
+            color = '#00B5D8'
             break
-        case 'teal.400':
-            color = '#38B2AC'
+        case 'cyan':
+            color = '#00B5D8'
+            break
+        case 'orange.500':
+            color = '#DD6B20'
+            break
+        case 'orange':
+            color = '#DD6B20'
+            break
+        case 'teal.500':
+            color = '#319795'
+            break
+        case 'teal':
+            color = '#319795'
+            break
+        case 'green.500':
+            color = '#38A169'
+            break 
+        case 'green':
+            color = '#38A169'
+            break 
+        case 'purple.500':
+            color = '#805AD5'
+            break
+        case 'purple':
+            color = '#805AD5'
+            break
+        case 'blue.500':
+            color = '#3182CE'
+            break
+        case 'blue':
+            color = '#3182CE'
             break
         default:
-            color = '#4299E1'
+            color = '#D53F8C'
             break
     }
     return color 

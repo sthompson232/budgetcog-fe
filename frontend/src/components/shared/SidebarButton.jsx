@@ -29,7 +29,7 @@ const SidebarButton = ({ to, name, icon }) => {
                     <Box pr={4}>
                         {icon}
                     </Box>
-                    <Text fontWeight={500} color={active ? `${userColor}.400` : '#777777'}>{name}</Text>
+                    <Text fontWeight={500} color={active ? `${userColor}.500` : '#777777'}>{name}</Text>
                 </Button>
             </NavLink>
         </Box>

@@ -35,7 +35,7 @@ function ColorCard(props) {
           borderRadius="md"
           boxShadow="md"
           color="white"
-          bg={`${input.value}.400`}
+          bg={`${input.value}.500`}
           _checked={{
             borderColor: "white",
             boxShadow: "outline"

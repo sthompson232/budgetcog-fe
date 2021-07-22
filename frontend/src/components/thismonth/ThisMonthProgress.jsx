@@ -36,11 +36,11 @@ const ThisMonthProgress = ({ expenses, recurring }) => {
         <Box p={4} mb={6} bg='white' borderRadius={12} boxShadow='md'>
             <SimpleGrid columns={[1, 1, 1, 2, 1, 2]} spacing={6} textAlign='center' p={4}>
                 <Box py={3} borderRadius={12} borderWidth="1px" boxShadow="sm">
-                    <Heading fontWeight={800} color={color} size={'2xl'}>£{spent}</Heading>
+                    <Heading fontWeight={800} color={`${color}.500`} size={'2xl'}>£{spent}</Heading>
                     <Text>spent this month</Text>
                 </Box>
                 <Box py={3} borderRadius={12} borderWidth="1px" boxShadow="sm">
-                    <Heading fontWeight={800} color={color} size={'2xl'}>£{remaining}</Heading>
+                    <Heading fontWeight={800} color={`${color}.500`} size={'2xl'}>£{remaining}</Heading>
                     <Text>remaining this month</Text>
                 </Box>
             </SimpleGrid>
