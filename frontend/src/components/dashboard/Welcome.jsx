@@ -25,7 +25,7 @@ const Welcome = () => {
     }, [curHour])
   
     return (
-        <Box w='100%' className='welcome-image' backgroundImage={image} px={4} borderRadius={12}>
+        <Box w='100%' className='welcome-image' backgroundImage={image} px={4} mb={6} borderRadius={12}>
             <Flex justifyContent='space-between' alignItems='center' flexWrap='wrap' py={4}>
                 <Box my={4}>
                     <Heading size={'lg'} fontWeight={800} color='white'>Good {currentHour}, {name}.👋</Heading>
