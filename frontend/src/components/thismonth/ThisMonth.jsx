@@ -8,21 +8,23 @@ import {
     GridItem,
     useBreakpointValue
 } from '@chakra-ui/react'
+import { useParams } from "react-router-dom";
 
 
 const ThisMonth = () => {
+    const date = useParams()
     const [expenses, setExpenses] = useState()
     const [recurring, setRecurring] = useState()
     const variant = useBreakpointValue({ base: '1', md: '2', lg: '1', xl: '2' })
 
     useEffect(() => {
-        axiosGet('this-month-expenses/').then(res => setExpenses(res.data))
-        axiosGet('recurring-expenses/').then(res => setRecurring(res.data))
-    }, [])
+        axiosGet(`this-month-expenses/?month=${date.month}&year=${date.year}`).then(res => setExpenses(res.data))
+        axiosGet(`recurring-expenses/?month=${date.month}&year=${date.year}`).then(res => setRecurring(res.data))
+    }, [date])
 
     const updateData = () => {
-        axiosGet('this-month-expenses/').then(res => setExpenses(res.data))
-        axiosGet('recurring-expenses/').then(res => setRecurring(res.data))
+        axiosGet(`this-month-expenses/?month=${date.month}&year=${date.year}`).then(res => setExpenses(res.data))
+        axiosGet(`recurring-expenses/?month=${date.month}&year=${date.year}`).then(res => setRecurring(res.data))
     }
 
     return (

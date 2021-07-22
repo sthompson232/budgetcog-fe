@@ -16,7 +16,7 @@ const MonthTile = ({ month }) => {
     const percent = calculate_percentage(month.expense_total, budget)
 
     return (
-        <Link to='/'>
+        <Link to={`/month/${month.month}/${month.year}`}>
             <Box p={4} bg='white' borderRadius={12} boxShadow='md' _hover={{ bg: "gray.50" }}>
                 <Heading className="headings stats" fontWeight={800} mb={2} color={`${color}.500`} >{month.name} {month.year}</Heading>
                 <Text fontSize={'lg'}><b>£{month.expense_total}</b> spent of <b>£{budget}</b></Text>

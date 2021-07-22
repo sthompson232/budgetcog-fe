@@ -18,7 +18,8 @@ from .serializers import ExpenseSerializer, ProfileSerializer, CategorySerialize
 class ThisMonthExpenses(APIView):
 
     def get(self, request):
-        month, year = get_month_and_year()
+        month = request.GET.get('month')
+        year = request.GET.get('year')
         current_month = Month.objects.get(user=request.user, year=year, month=month)
         expenses = current_month.expense_set.all()
         serializer = ExpenseSerializer(expenses, many=True)

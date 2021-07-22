@@ -28,7 +28,7 @@ const App = () => {
             <Route exact path="/settings">
               <AppWrapper page={<Settings />} />
             </Route>
-            <Route exact path="/month/:month/:year/">
+            <Route exact path="/month/:month/:year">
               <AppWrapper page={<ThisMonth />} />
             </Route>
             <Route exact path="/past-months">
