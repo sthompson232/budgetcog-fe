@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Sidebar from './sidebar/Sidebar'
 import { useBreakpointValue } from '@chakra-ui/media-query'
-import { Box } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { axiosGet } from '../utils/axios'
 import pattern1 from '../static/images/pattern1.jpg'
@@ -35,9 +35,12 @@ const AppWrapper = ({page}) => {
     return (
         <div>
             <Sidebar variant={variant}/>
-            <Box ml={variant === 'sidebar' ? 320 : 0} className='background-image' bg={!background ? 'gray.100' : ''} backgroundImage={background} p={6}>
-                {page}
-            </Box>
+                <Box ml={variant === 'sidebar' ? 320 : 0} className='background-image' bg={!background ? 'gray.100' : ''} 
+                backgroundImage={background} p={6}>
+                    <Container maxW='1600px' px={0}>
+                        {page}
+                    </Container>
+                </Box>
         </div>
     )
 }

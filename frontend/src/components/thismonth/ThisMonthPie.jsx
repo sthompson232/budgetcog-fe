@@ -59,7 +59,7 @@ const ThisMonthPie = ({ expenses, recurring }) => {
     return (
         <>
         {expenses && recurring ?
-        <Box p={4} bg='white' borderRadius={12} boxShadow='md' mb={6}>
+        <Box p={4} bg='white' borderRadius={12} boxShadow='md' >
             <Heading className="headings" fontWeight={800} size={'lg'} mb={2}>Your month so far...</Heading>
             <Box className="chart-container">
                 <Pie data={data} />  

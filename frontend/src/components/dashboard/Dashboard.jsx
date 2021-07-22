@@ -46,7 +46,7 @@ const Dashboard = () => {
                 <StatisticTile color={color} number={(goal - total_saved).toFixed(2)} sentence="left until you've reached your goal" icon="coins" />
             </SimpleGrid>
             <SimpleGrid columns={[1, 1, 1, 1, 3, 3]} spacing={6}>
-                <GoalProgress total_saved={total_saved} goal={goal} />
+                <GoalProgress total_saved={total_saved} goal={goal} color={color} />
                 <PastMonthsBar months={pastMonths} />
                 <ThisMonthPie expenses={currentExpenses} recurring={currentRecurring} />
             </SimpleGrid>
