@@ -23,11 +23,13 @@ const ExpenseForm = ({ expense }) => {
     const [categories, setCategories] = useState([])
     const [date, setDate] = useState(Date.parse(expense.date))
     const [cost, setCost] = useState(expense.cost)
+    const [submitting, setSubmitting] = useState(false)
 
     const format = (val) => `£` + val
     const parse = (val) => val.replace(/^£/, "")
 
     const submitForm = () => {
+        setSubmitting(true)
         axiosPost('expense/', {
             "id": expense.id,
             "name": name,
@@ -35,13 +37,12 @@ const ExpenseForm = ({ expense }) => {
             "cost": cost,
             "category": category
         })
+        .then((res) => (setSubmitting(!(res.status === 200))))
     }
 
     useEffect(() => {
         axiosGet('get-categories/').then(res => setCategories(res.data))
     }, [])
-
-    console.log(date)
 
     return (
         <Box>
@@ -84,6 +85,7 @@ const ExpenseForm = ({ expense }) => {
             </Box>
             <Button 
                 onClick={() => submitForm()}
+                isLoading={submitting}
                 w='100%' 
                 colorScheme={color} 
                 color='white' 
