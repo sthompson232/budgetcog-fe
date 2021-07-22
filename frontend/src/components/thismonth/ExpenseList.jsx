@@ -7,7 +7,7 @@ import {
 import ExpenseItem from '../shared/ExpenseItem'
 import AddExpenseButton from '../shared/AddExpenseButton'
 
-const ExpenseList = ({ expenses, recurring }) => {
+const ExpenseList = ({ expenses, recurring, updateData }) => {
     return (
         <Box p={4} bg='white' borderRadius={12} boxShadow='md' mb={6}>
             <Flex justifyContent='space-between' alignItems='center' mb={4} flexWrap='wrap'>
@@ -16,7 +16,7 @@ const ExpenseList = ({ expenses, recurring }) => {
             </Flex>
             <Box>
             {expenses && expenses.map(expense => (
-                <ExpenseItem key={expense.id} expense={expense}/>
+                <ExpenseItem key={expense.id} expense={expense} updateData={updateData}/>
             ))}
             </Box>
         </Box>

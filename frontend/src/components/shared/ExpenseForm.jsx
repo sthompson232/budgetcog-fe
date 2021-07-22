@@ -16,7 +16,7 @@ import { axiosGet, axiosPost } from '../../utils/axios'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const ExpenseForm = ({ expense }) => {
+const ExpenseForm = ({ expense, updateData }) => {
     const color = useSelector(state => {return state.user.color})
     const [name, setName] = useState(expense.name)
     const [category, setCategory] = useState(expense.icon.name)
@@ -37,7 +37,10 @@ const ExpenseForm = ({ expense }) => {
             "cost": cost,
             "category": category
         })
-        .then((res) => (setSubmitting(!(res.status === 200))))
+        .then((res) => {
+            setSubmitting(!(res.status === 200));
+            updateData();
+        })
     }
 
     useEffect(() => {

@@ -20,6 +20,11 @@ const ThisMonth = () => {
         axiosGet('recurring-expenses/').then(res => setRecurring(res.data))
     }, [])
 
+    const updateData = () => {
+        axiosGet('this-month-expenses/').then(res => setExpenses(res.data))
+        axiosGet('recurring-expenses/').then(res => setRecurring(res.data))
+    }
+
     return (
         <Grid templateColumns={`repeat(${variant}, 1fr)`} gap={6}>
             <GridItem>
@@ -27,8 +32,8 @@ const ThisMonth = () => {
                 <ThisMonthPie expenses={expenses} recurring={recurring} />
             </GridItem>
             <GridItem>
-                <ExpenseList expenses={expenses} />
-                <ExpenseList expenses={recurring} recurring />
+                <ExpenseList expenses={expenses} updateData={updateData} />
+                <ExpenseList expenses={recurring} recurring updateData={updateData} />
             </GridItem>
         </Grid>
     )

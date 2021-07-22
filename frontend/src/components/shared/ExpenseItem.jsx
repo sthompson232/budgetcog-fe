@@ -17,7 +17,7 @@ import { getIconColor } from '../../utils/icons'
 import ExpenseForm from './ExpenseForm';
 
 
-const ExpenseItem = ({ expense }) => {
+const ExpenseItem = ({ expense, updateData }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -51,7 +51,7 @@ const ExpenseItem = ({ expense }) => {
                     <ModalHeader><Heading mt={4} fontWeight={900}>Update your expense</Heading></ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
-                        <ExpenseForm expense={expense} />
+                        <ExpenseForm expense={expense} updateData={updateData} />
                     </ModalBody>
                 </ModalContent>
             </Modal>
