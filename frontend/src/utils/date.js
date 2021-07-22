@@ -89,7 +89,15 @@ const getDate = (curDate, curDay, curMonth, curYear) => {
     return `${curDate} ${day}, ${month} ${year}`
 } 
 
+const getMonthAndYear = () => {
+    const date = new Date()
+    const month = date.getMonth() + 1
+    const year = date.getFullYear()
+    return { month: month, year: year }
+}
+
 export { 
     getDate,
-    daysLeft 
+    daysLeft,
+    getMonthAndYear
 }
