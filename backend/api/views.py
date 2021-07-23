@@ -112,6 +112,7 @@ class GetCurrentMonth(APIView):
         month, year = get_month_and_year()
         name = get_month_name(month)
         current_month, created = Month.objects.get_or_create(user=request.user, year=year, month=month, name=name)
+        serializer = MonthSerializer(current_month, many=False)
 
         if created:
             recurring_expense = Expense.objects.filter(user=request.user, recurring=True)
@@ -127,9 +128,11 @@ class GetCurrentMonth(APIView):
                         recurring=False,
                         category=recurring.category
                     )
-            return Response(status=status.HTTP_201_CREATED)
+                    current_month.expense_total += float(recurring.cost) 
+                    current_month.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class GetPastMonths(APIView):
