@@ -7,8 +7,7 @@ const initialState = {
     color: '',
     background: 0,
     budget: 0.00,
-    goal: 0.00,
-    total_saved: 0.00,
+    goal: 0.00
 }
 
 
@@ -25,8 +24,7 @@ const userReducer = (state = initialState, action) => {
                 isAuthenticated: true,
                 color: action.profile.color,
                 background: action.profile.background,
-                budget: action.profile.budget,
-                total_saved: action.profile.total_saved
+                budget: action.profile.budget
             };
         case 'LOGOUT':
             return {
@@ -39,8 +37,7 @@ const userReducer = (state = initialState, action) => {
                 isAuthenticated: false,
                 color: '',
                 background: 0,
-                budget: 0,
-                total_saved: 0
+                budget: 0
             }
         case 'SET_COLOR':
             return {
@@ -61,11 +58,6 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 goal: action.payload
-            }
-        case 'EXPENSE_ADDED':
-            return {
-                ...state,
-                total_saved: state.total_saved - action.payload
             }
         default:
             return state;

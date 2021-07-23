@@ -97,8 +97,6 @@ class NewExpense(APIView):
         expense.save()
         month.expense_total += Decimal(request.data['cost'])
         month.save()
-        request.user.profile.total_saved -= Decimal(request.data['cost'])
-        request.user.profile.save()
         return Response(status=status.HTTP_200_OK)
 
 
@@ -119,7 +117,6 @@ class GetCurrentMonth(APIView):
 
             last_month = Month.objects.filter(user=request.user).order_by('date_created').first()
             if last_month:
-                total_recurring_cost = 0
                 for recurring in recurring_expense:
                     Expense.objects.create(
                         name=recurring.name,
@@ -131,11 +128,8 @@ class GetCurrentMonth(APIView):
                     )
                     last_month.expense_total -= Decimal(recurring.cost)
                     current_month.expense_total += float(recurring.cost)
-                    total_recurring_cost += recurring.cost   
-                request.user.profile.total_saved += (request.user.profile.budget - total_recurring_cost)
                 last_month.save()
                 current_month.save()
-                request.user.profile.save()
                 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
@@ -175,6 +169,20 @@ class Goal(APIView):
         request.user.profile.goal = Decimal(request.data) 
         request.user.profile.save()
         return Response(status=status.HTTP_200_OK)
+
+
+class GetTotalSaved(APIView):
+
+    def get(self, request):
+        expenses = Expense.objects.filter(user=request.user)
+        months = Month.objects.filter(user=request.user).count()
+        budget = request.user.profile.budget 
+        allowance = months * budget 
+        spent = 0
+        for expense in expenses:
+            spent += expense.cost 
+        saved = allowance - spent
+        return Response(saved, status=status.HTTP_200_OK) 
 
 
 class ColorSelector(APIView):

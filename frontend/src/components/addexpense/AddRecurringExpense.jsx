@@ -12,13 +12,11 @@ import {
     NumberDecrementStepper,
     Button
 } from '@chakra-ui/react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { axiosGet, axiosPost } from '../../utils/axios'
-import { expenseAdded } from '../../redux/actions/user'
 
 
 const AddExpense = () => {
-    const dispatch = useDispatch()
     const color = useSelector(state => {return state.user.color})
     const [name, setName] = useState('')
     const [category, setCategory] = useState()
@@ -36,7 +34,6 @@ const AddExpense = () => {
             "cost": cost,
             "category": category
         })
-        .then(() => dispatch(expenseAdded(cost)))
         .then(() => setSubmitting(false))
         .then(() => {
             setName('');

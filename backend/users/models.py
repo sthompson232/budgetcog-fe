@@ -58,7 +58,6 @@ class Profile(models.Model):
   background = models.IntegerField(default=0)
   goal = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
   budget = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
-  total_saved = models.DecimalField(decimal_places=2, max_digits=20, default=0.00)
 
   def __str__(self):
     return self.user.email
