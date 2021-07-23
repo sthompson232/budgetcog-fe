@@ -4,6 +4,8 @@ import {
     Heading,
     Box,
     FormLabel,
+    FormControl,
+    FormErrorMessage,
     Select,
     Input,
     NumberInput,
@@ -55,32 +57,41 @@ const AddExpense = () => {
             <Heading className="headings" size={'xl'} fontWeight={800} my={3}>Add a recurring expense</Heading>
             <hr />
             <Box py={4}> 
-                <FormLabel mt={2}>Expense Name</FormLabel>
-                <Input maxWidth={500} value={name} type="name" onChange={e => setName(e.target.value)} />
-                <FormLabel mt={2}>Expense cost</FormLabel>
-                <NumberInput
-                    maxWidth='400px'
-                    onChange={(value) => setCost(parse(value))}
-                    value={format(cost)}
-                    max={50000}
-                    precision={2}
-                    step={1}
-                >
-                <NumberInputField />
-                    <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                    </NumberInputStepper>
-                </NumberInput>
+                <FormControl isRequired isInvalid>
+                    <FormLabel mt={2}>Expense Name</FormLabel>
+                    <Input maxWidth={500} value={name} type="name" onChange={e => setName(e.target.value)} />
+                    <FormErrorMessage>Error message!</FormErrorMessage>
+                </FormControl>
+                <FormControl isRequired isInvalid>
+                    <FormLabel mt={2}>Expense cost</FormLabel>
+                    <NumberInput
+                        maxWidth='400px'
+                        onChange={(value) => setCost(parse(value))}
+                        value={format(cost)}
+                        max={50000}
+                        precision={2}
+                        step={1}
+                    >
+                    <NumberInputField />
+                        <NumberInputStepper>
+                            <NumberIncrementStepper />
+                            <NumberDecrementStepper />
+                        </NumberInputStepper>
+                    </NumberInput>
+                    <FormErrorMessage>Error message!</FormErrorMessage>
+                </FormControl>
                 <Box mt={3}>
-                    <FormLabel>Expense Category</FormLabel>
-                    {categories &&
-                    <Select maxWidth={500} value={category} onChange={e => setCategory(e.target.value)} placeholder="Select a category">
-                        {categories.map(category => (
-                            <option key={category.id} value={category.name}>{category.name}</option>
-                        ))}
-                    </Select>
-                    }
+                    <FormControl isRequired isInvalid>
+                        <FormLabel>Expense Category</FormLabel>
+                        {categories &&
+                        <Select maxWidth={500} value={category} onChange={e => setCategory(e.target.value)} placeholder="Select a category">
+                            {categories.map(category => (
+                                <option key={category.id} value={category.name}>{category.name}</option>
+                            ))}
+                        </Select>
+                        }
+                        <FormErrorMessage>Error message!</FormErrorMessage>
+                    </FormControl>
                 </Box>
                 <Button 
                     onClick={() => submitForm()}
