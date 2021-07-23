@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { 
     Heading,
     Box,
@@ -21,6 +21,7 @@ import { getMonthName } from '../../utils/date'
 
 
 const AddExpense = () => {
+    let history = useHistory()
     const color = useSelector(state => {return state.user.color})
     const [name, setName] = useState('')
     const [category, setCategory] = useState()
@@ -49,6 +50,7 @@ const AddExpense = () => {
             setDate(Date.now());
             setCost(0);
         })
+        .then(() => history.push(`/month/${current_date.month}/${current_date.year}`))
     }
 
     useEffect(() => {

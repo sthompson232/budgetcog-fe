@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { getIconColor } from '../../utils/icons'
 import ExpenseForm from './ExpenseForm';
+import DeleteExpenseForm from './DeleteExpenseForm';
 
 
 const ExpenseItem = ({ expense, updateData }) => {
@@ -36,9 +37,7 @@ const ExpenseItem = ({ expense, updateData }) => {
                         </Text>
                     </Box>
                 </Flex>
-                <Box py={1}>
-                    {expense.date}
-                </Box>
+                {expense.date}
             </Flex>
 
             <Modal
@@ -48,10 +47,12 @@ const ExpenseItem = ({ expense, updateData }) => {
             >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader><Heading mt={4} fontWeight={900}>Update your expense</Heading></ModalHeader>
+                    <ModalHeader><Heading mt={4} fontWeight={900}>Manage your expense</Heading></ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <ExpenseForm expense={expense} updateData={updateData} />
+                        <hr />
+                        <DeleteExpenseForm expense={expense} updateData={updateData} />
                     </ModalBody>
                 </ModalContent>
             </Modal>

@@ -100,6 +100,17 @@ class NewExpense(APIView):
         return Response(status=status.HTTP_200_OK)
 
 
+class DeleteExpense(APIView):
+
+    def post(self, request):
+        expense = Expense.objects.get(id=request.data['id'])
+        expense.delete()
+        if expense.month:
+            expense.month.expense_total -= expense.cost
+            expense.month.save()
+        return Response(status=status.HTTP_200_OK)
+
+
 ##############################################################################################################
 # MONTHS
 
