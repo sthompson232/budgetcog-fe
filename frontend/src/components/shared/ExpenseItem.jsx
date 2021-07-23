@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { 
     Box,
     Flex,
@@ -20,6 +20,14 @@ import DeleteExpenseForm from './DeleteExpenseForm';
 
 const ExpenseItem = ({ expense, updateData }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [date, setDate] = useState()
+
+    useEffect(() => {
+        if (expense.date) {
+            setDate(expense.date.split("-").reverse().join("/"))            
+        }
+    }, [expense.date]) 
+
 
     return (
         <Box onClick={onOpen} my={2} p={3} bg='white' borderRadius={12} borderWidth="1px" boxShadow="sm" _hover={{ bg: "#f6f6f6", cursor: "pointer" }}>
@@ -37,7 +45,7 @@ const ExpenseItem = ({ expense, updateData }) => {
                         </Text>
                     </Box>
                 </Flex>
-                {expense.date}
+                <Text color='gray.500'>{date && date}</Text>
             </Flex>
 
             <Modal
