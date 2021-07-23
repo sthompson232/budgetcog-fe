@@ -34,7 +34,7 @@ const App = () => {
             <Route exact path="/past-months">
               <AppWrapper page={<PastMonths />} />
             </Route>
-            <Route exact path="/add-expense">
+            <Route exact path="/add-expense/:month/:year">
               <AppWrapper page={<AddExpense />} />
             </Route>
             <Route exact path="/recurring-expenses">

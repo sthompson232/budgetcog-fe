@@ -8,7 +8,7 @@ import {
     GridItem,
     useBreakpointValue
 } from '@chakra-ui/react'
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
 import { getMonthAndYear } from '../../utils/date'
 
 

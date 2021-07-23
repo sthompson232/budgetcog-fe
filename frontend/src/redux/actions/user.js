@@ -39,3 +39,10 @@ export const updateGoal =(value) => {
         payload: value
     }
 }
+
+export const expenseAdded = (cost) => {
+    return {
+        type: 'EXPENSE_ADDED',
+        payload: cost
+    }
+}

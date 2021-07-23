@@ -62,6 +62,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 goal: action.payload
             }
+        case 'EXPENSE_ADDED':
+            return {
+                ...state,
+                total_saved: state.total_saved - action.payload
+            }
         default:
             return state;
     }
