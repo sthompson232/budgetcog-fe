@@ -22,14 +22,14 @@ import { getMonthName } from '../../utils/date'
 
 const AddExpense = () => {
     let history = useHistory()
+    const current_date = useParams()
     const color = useSelector(state => {return state.user.color})
     const [name, setName] = useState('')
     const [category, setCategory] = useState()
     const [categories, setCategories] = useState([])
-    const [date, setDate] = useState(Date.now())
+    const [date, setDate] = useState(new Date(current_date.year, current_date.month - 1, 1))
     const [cost, setCost] = useState(0)
     const [submitting, setSubmitting] = useState(false)
-    const current_date = useParams()
 
     const format = (val) => `£` + val
     const parse = (val) => val.replace(/^£/, "")

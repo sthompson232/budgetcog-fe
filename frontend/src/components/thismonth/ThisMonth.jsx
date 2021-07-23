@@ -40,7 +40,7 @@ const ThisMonth = () => {
     return (
         <>
         <Box w='100%' className='welcome-image' bg='white' p={4} mb={6} borderRadius={12}>
-            <Heading textAlign='center' size={'2xl'} className="headings stats" fontWeight={800} py={2} color={`${color}.500`}>{getMonthName(month - 1)} {year}</Heading>
+            <Heading textAlign='center' size={'2xl'} className="headings stats" fontWeight={800} py={2} color={`${color}.500`}>{getMonthName(date.month - 1)} {date.year}</Heading>
         </Box>
         <Grid templateColumns={`repeat(${variant}, 1fr)`} gap={6}>
             <GridItem>

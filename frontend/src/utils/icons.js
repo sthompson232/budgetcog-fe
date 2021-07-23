@@ -80,6 +80,24 @@ const getIconHexColor = (name) => {
         case 'blue':
             color = '#3182CE'
             break
+        case 'pink':
+            color = '#D53F8C'
+            break
+        case 'pink.500':
+            color = '#D53F8C'
+            break
+        case 'blue':
+            color = '#3182CE'
+            break 
+        case 'blue.500':
+            color = '#3182CE'
+            break 
+        case 'yellow':
+            color = '#D69E2E'
+            break
+        case 'yellow.500':
+            color = '#D69E2E'
+            break
         default:
             color = '#D53F8C'
             break
