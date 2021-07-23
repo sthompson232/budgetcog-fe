@@ -3,7 +3,6 @@ import Sidebar from './sidebar/Sidebar'
 import { useBreakpointValue } from '@chakra-ui/media-query'
 import { Box, Container } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
-import { axiosGet } from '../utils/axios'
 import pattern1 from '../static/images/pattern1.jpg'
 import pattern2 from '../static/images/pattern2.jpg'
 
@@ -11,10 +10,6 @@ const AppWrapper = ({page}) => {
     const [background, setBackground] = useState()
     const backgroundId = useSelector(state => {return state.user.background})
     const variant = useBreakpointValue({ base: 'drawer', lg: 'sidebar'})
-
-    useEffect(() => {
-        axiosGet('update-current-month/')
-    }, [])
 
     useEffect(() => {
         switch(backgroundId) {

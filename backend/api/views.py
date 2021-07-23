@@ -105,7 +105,8 @@ class NewExpense(APIView):
 ##############################################################################################################
 # MONTHS
 
-class CreateMonths(APIView):
+
+class GetCurrentMonth(APIView):
 
     def get(self, request):
         month, year = get_month_and_year()
@@ -113,24 +114,28 @@ class CreateMonths(APIView):
         current_month, created = Month.objects.get_or_create(user=request.user, year=year, month=month, name=name)
 
         if created:
+            recurring_expense = Expense.objects.filter(user=request.user, recurring=True)
+
+            last_month = Month.objects.filter(user=request.user).order_by('date_created').first()
+            if last_month:
+                for recurring in recurring_expense:
+                    Expense.objects.create(
+                        name=recurring.name,
+                        cost=recurring.cost,
+                        month=last_month,
+                        user=request.user,
+                        recurring=False,
+                        category=recurring.category
+                    )
             return Response(status=status.HTTP_201_CREATED)
         else:
             return Response(status=status.HTTP_200_OK)
 
 
-class GetCurrentMonth(APIView):
-
-    def get(self, request):
-        month, year = get_month_and_year()
-        current = Month.objects.get(user=request.user, year=year, month=month)
-        serializer = MonthSerializer(current, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-
 class GetPastMonths(APIView):
 
     def get(self, request):
-        months = Month.objects.filter(user=request.user).order_by('date_created')
+        months = Month.objects.filter(user=request.user).order_by('-date_created')
         serializer = MonthSerializer(months, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

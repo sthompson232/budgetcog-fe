@@ -23,10 +23,10 @@ const Dashboard = () => {
     const [remainingThisMonth, setRemainingThisMonth] = useState()
 
     useEffect(() => {
-        axiosGet('this-month-expenses/').then(res => setCurrentExpenses(res.data))
+        axiosGet('get-current-month/').then(res => setCurrentMonth(res.data))
+        .then(() => axiosGet('this-month-expenses/').then(res => setCurrentExpenses(res.data)))
         axiosGet('recurring-expenses/').then(res => setCurrentRecurring(res.data))
         axiosGet('get-past-months/').then(res => setPastMonths(res.data))
-        axiosGet('get-current-month/').then(res => setCurrentMonth(res.data))
     }, [])
 
     useEffect(() => {
