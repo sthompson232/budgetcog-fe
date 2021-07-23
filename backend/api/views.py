@@ -89,9 +89,13 @@ class NewExpense(APIView):
     def post(self, request):
         month = Month.objects.get(user=request.user, month=request.data['month'], year=request.data['year'])
         category = Category.objects.get(name=request.data['category'])
+        if request.data['date']:
+            date = datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000))
+        else:
+            date = None
         expense = Expense.objects.create(
             name=request.data['name'],
-            date=datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000)),
+            date=date,
             cost=request.data['cost'],
             month=month,
             user=request.user,

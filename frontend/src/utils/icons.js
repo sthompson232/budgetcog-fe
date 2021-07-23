@@ -2,7 +2,7 @@ const getIconColor = (name) => {
     let color 
     switch(name) {
         case 'Entertainment':
-            color = 'red.500'
+            color = 'teal.500'
             break
         case 'Eating Out':
             color = 'cyan.500'
@@ -11,7 +11,7 @@ const getIconColor = (name) => {
             color = 'orange.500'
             break
         case 'Rent':
-            color = 'teal.500'
+            color = 'red.500'
             break
         case 'Gift':
             color = 'purple.500'
@@ -73,12 +73,6 @@ const getIconHexColor = (name) => {
             break
         case 'purple':
             color = '#805AD5'
-            break
-        case 'blue.500':
-            color = '#3182CE'
-            break
-        case 'blue':
-            color = '#3182CE'
             break
         case 'pink':
             color = '#D53F8C'

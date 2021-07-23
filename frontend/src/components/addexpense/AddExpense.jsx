@@ -27,7 +27,7 @@ const AddExpense = () => {
     const [name, setName] = useState('')
     const [category, setCategory] = useState()
     const [categories, setCategories] = useState([])
-    const [date, setDate] = useState(new Date(current_date.year, current_date.month - 1, 1))
+    const [date, setDate] = useState(new Date(current_date.year, current_date.month - 1, 1).getTime())
     const [cost, setCost] = useState(0)
     const [submitting, setSubmitting] = useState(false)
 
