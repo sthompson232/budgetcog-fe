@@ -6,12 +6,13 @@ import {
     Text,
     Flex
 } from '@chakra-ui/react'
-import { getDate, daysLeft } from '../../utils/date'
+import { getDate, daysLeft, getMonthAndYear } from '../../utils/date'
 import image from '../../static/images/magic.jpg'
 import AddExpenseButton from '../shared/AddExpenseButton'
 
 
 const Welcome = () => {
+    const { month, year } = getMonthAndYear()
     const [currentHour, setCurrentHour] = useState('')
     let name = useSelector(state => {return state.user.firstName})
 
@@ -31,7 +32,7 @@ const Welcome = () => {
                     <Heading size={'lg'} fontWeight={800} color='white'>Good {currentHour}, {name}.👋</Heading>
                     <Text mt={2} size={'md'} color='#dddddd'>{getDate(today.getDate(), today.getDay(), today.getMonth(), today.getFullYear())}. {daysLeft()}</Text>
                 </Box>
-                <AddExpenseButton recurring={false} />
+                <AddExpenseButton recurring={false} month={month} year={year} />
             </Flex>
         </Box>
     )
