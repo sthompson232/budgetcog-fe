@@ -47,15 +47,33 @@ class RecurringExpenses(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class NewRecurringExpense(APIView):
+
+    def post(self, request):
+        category = Category.objects.get(name=request.data['category'])
+        expense = Expense.objects.create(
+            name = request.data['name'],
+            cost = request.data['cost'],
+            category = category,
+            recurring = True,
+            user = request.user
+            )
+        expense.save()
+        print(request.data)
+        return Response(status=status.HTTP_200_OK)
+
+
 class UpdateExpense(APIView):
 
     def post(self, request):
         expense = Expense.objects.get(id=request.data['id'])
         cost_difference = expense.cost - Decimal(request.data['cost'])
-        expense.month.expense_total -= cost_difference
-        expense.month.save()
+        if expense.month:
+            expense.month.expense_total -= cost_difference
+            expense.month.save()
         expense.name = request.data['name']
-        expense.date = datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000))
+        if request.data['date']:
+            expense.date = datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000))
         expense.cost = Decimal(request.data['cost'])
         expense.category = Category.objects.get(name=request.data['category'])
         expense.save()

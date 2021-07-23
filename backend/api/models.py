@@ -25,7 +25,6 @@ class Expense(models.Model):
     name = models.CharField(max_length=200)
     date = models.DateField(blank=True, null=True)
     cost = models.DecimalField(decimal_places=2, max_digits=8)
-    description = models.TextField(max_length=1000)
     month = models.ForeignKey(Month, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recurring = models.BooleanField(default=False)

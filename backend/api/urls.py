@@ -12,6 +12,7 @@ urlpatterns = [
     path('goal/', views.Goal.as_view(), name='goal'),
     path('expense/', views.UpdateExpense.as_view(), name='expense'),
     path('new-expense/', views.NewExpense.as_view(), name='new-expense'),
+    path('new-recurring-expense/', views.NewRecurringExpense.as_view(), name='new-recurring-expense'),
     path('get-categories/', views.GetCategories.as_view(), name='get-categories'),
     path('get-past-months/', views.GetPastMonths.as_view(), name='get-past-months'),
     path('get-current-month/', views.GetCurrentMonth.as_view(), name='get-current-month'),
