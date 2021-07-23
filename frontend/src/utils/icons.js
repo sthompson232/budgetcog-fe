@@ -13,6 +13,21 @@ const getIconColor = (name) => {
         case 'Rent':
             color = 'teal.500'
             break
+        case 'Gift':
+            color = 'purple.500'
+            break 
+        case 'Groceries':
+            color = 'pink.500'
+            break
+        case 'Transport':
+            color = 'blue.500'
+            break 
+        case 'Saving':
+            color = 'green.500'
+            break 
+        case 'Insurance':
+            color = 'yellow.500'
+            break
         default:
             color = 'blue.500'
             break

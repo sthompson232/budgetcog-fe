@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom"
 import { 
     Heading,
     Box,
@@ -14,15 +15,18 @@ import {
 } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { axiosGet, axiosPost } from '../../utils/axios'
+import { getMonthAndYear } from '../../utils/date'
 
 
 const AddExpense = () => {
+    let history = useHistory()
     const color = useSelector(state => {return state.user.color})
     const [name, setName] = useState('')
     const [category, setCategory] = useState()
     const [categories, setCategories] = useState([])
     const [cost, setCost] = useState(0)
     const [submitting, setSubmitting] = useState(false)
+    const { month, year } = getMonthAndYear()
 
     const format = (val) => `£` + val
     const parse = (val) => val.replace(/^£/, "")
@@ -39,6 +43,7 @@ const AddExpense = () => {
             setName('');
             setCost(0);
         })
+        .then(() => history.push(`/month/${month}/${year}`))
     }
 
     useEffect(() => {

@@ -59,6 +59,10 @@ class NewRecurringExpense(APIView):
             user = request.user
             )
         expense.save()
+        month, year = get_month_and_year()
+        month = Month.objects.get(month=month, year=year, user=request.user)
+        month.expense_total += Decimal(request.data['cost'])
+        month.save()
         print(request.data)
         return Response(status=status.HTTP_200_OK)
 
@@ -108,6 +112,11 @@ class DeleteExpense(APIView):
         if expense.month:
             expense.month.expense_total -= expense.cost
             expense.month.save()
+        else:
+            month, year = get_month_and_year()
+            current_month = Month.objects.get(user=request.user, year=year, month=month)
+            current_month.expense_total -= expense.cost 
+            current_month.save()
         return Response(status=status.HTTP_200_OK)
 
 
