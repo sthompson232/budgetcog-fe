@@ -119,6 +119,7 @@ class GetCurrentMonth(APIView):
 
             last_month = Month.objects.filter(user=request.user).order_by('date_created').first()
             if last_month:
+                total_recurring_cost = 0
                 for recurring in recurring_expense:
                     Expense.objects.create(
                         name=recurring.name,
@@ -128,8 +129,14 @@ class GetCurrentMonth(APIView):
                         recurring=False,
                         category=recurring.category
                     )
-                    current_month.expense_total += float(recurring.cost) 
-                    current_month.save()
+                    last_month.expense_total -= Decimal(recurring.cost)
+                    current_month.expense_total += float(recurring.cost)
+                    total_recurring_cost += recurring.cost   
+                request.user.profile.total_saved += (request.user.profile.budget - total_recurring_cost)
+                last_month.save()
+                current_month.save()
+                request.user.profile.save()
+                
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.data, status=status.HTTP_200_OK)

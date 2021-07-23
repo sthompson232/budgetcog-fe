@@ -35,9 +35,7 @@ const Dashboard = () => {
             setRemainingThisMonth(remaining)
         }
     }, [currentMonth, budget])
-
-    console.log(currentMonth)
-
+    
     return (
         <Box>
             <Welcome />

@@ -18,8 +18,8 @@ const PastMonthsBar = ({ months, color }) => {
                 monthSpent.push(month.expense_total)
             }
         }
-        setMonth(monthName)
-        setSpent(monthSpent)
+        setMonth(monthName.reverse())
+        setSpent(monthSpent.reverse())
     }, [months])
 
     const data = {
