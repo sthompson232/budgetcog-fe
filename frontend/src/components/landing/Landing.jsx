@@ -7,21 +7,13 @@ import {
     Stack,
     Text,
     Button,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalBody,
-    Link,
-    ModalHeader,
-    ModalCloseButton,
-    useDisclosure,
+    Link
   } from '@chakra-ui/react'
   import { Link as RouterLink } from 'react-router-dom'
 import Navbar from './Navbar'
 
 
 const Landing = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
         <div>
@@ -50,25 +42,10 @@ const Landing = () => {
                         </Text>
                         <Flex justifyContent={'center'} flexWrap='wrap'>
                             <RouterLink to='/dashboard'>
-                                <Button onClick={onOpen} colorScheme="cyan" boxShadow="md" size="lg" mx={8} mb={4} px={16}>
+                                <Button colorScheme="cyan" boxShadow="md" size="lg" mx={8} mb={4} px={16}>
                                     <Text color="white">Get Started</Text>
                                 </Button>
                             </RouterLink>
-                            <Modal
-                                isCentered
-                                isOpen={isOpen}
-                                onClose={onClose}
-                            >
-                                <ModalOverlay />
-                                <ModalContent>
-                                <ModalHeader><Heading fontWeight={900}>Log in</Heading></ModalHeader>
-                                <ModalCloseButton />
-                                <ModalBody pb={6}>
-                                    <Text pb={4}>Sign up with one click by linking your Google account to BudgetCog.</Text>
-                                    <Login />
-                                </ModalBody>
-                                </ModalContent>
-                            </Modal>
                             <Button boxShadow="md" size="lg" mx={8} mb={4} px={16}>
                                 <Text>Learn More</Text>
                             </Button>

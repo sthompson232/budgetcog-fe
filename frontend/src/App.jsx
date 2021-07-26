@@ -11,6 +11,7 @@ import {
   Switch,
   Route
 } from "react-router-dom"
+import LoginPage from './components/landing/LoginPage'
 
 
 const App = () => {
@@ -22,6 +23,9 @@ const App = () => {
           <Switch>
             <Route exact path="/">
               <Landing />
+            </Route>
+            <Route exact path="/login">
+              <LoginPage />
             </Route>
             <Route exact path="/dashboard">
               <PrivateRoute page={<Dashboard />} />

@@ -6,19 +6,20 @@ import {
   } from '@chakra-ui/react'
 import { useBreakpointValue } from '@chakra-ui/media-query'
 import logo from '../../static/images/logo-light.png'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     const variant = useBreakpointValue({ base: 'base', sm: 'sm'})
 
     return (
-        <div>
-            <Box bg='black' px={6} py={3}>
-                <Flex h={16} alignItems={'center'} justifyContent={'space-between'} flexWrap='wrap'>
+        <Box bg='black' px={6} py={3}>
+            <Flex h={16} alignItems={'center'} justifyContent={'space-between'} flexWrap='wrap'>
+                <Link to="/">
                     <Image htmlWidth={180} src={logo}></Image>
-                    {variant === 'sm' ? <Login /> : ''}
-                </Flex>
-            </Box>
-        </div>
+                </Link>
+                {variant === 'sm' ? <Login /> : ''}
+            </Flex>
+        </Box>
     )
 }
 

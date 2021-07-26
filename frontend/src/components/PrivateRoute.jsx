@@ -10,11 +10,11 @@ const isAuthenticated = useSelector((state) => {return state.user.isAuthenticate
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         isAuthenticated ? (
           <AppWrapper page={page} />
         ) : (
-          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+          <Redirect to={{ pathname: '/login' }} />
         )
       }
     />
