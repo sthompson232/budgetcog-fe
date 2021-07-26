@@ -16,7 +16,7 @@ const StatisticTile = ({ number, sentence, icon, color }) => {
         if (number && number !== 'NaN') {
             setNum(number)
         }
-    })
+    }, [number])
     
     const variant = useBreakpointValue({ 'base': '2xl', 'sm': 'xl', 'md': '2xl', 'xl': '3xl', '2xl': '2xl' })
     return (

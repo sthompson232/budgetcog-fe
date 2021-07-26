@@ -11,6 +11,10 @@ import { useDispatch } from 'react-redux'
 import { setBackground } from '../../redux/actions/user'
 import pattern1 from '../../static/images/pattern1.jpg'
 import pattern2 from '../../static/images/pattern2.jpg'
+import pattern3 from '../../static/images/pattern3.jpg'
+import pattern4 from '../../static/images/pattern4.jpg'
+import pattern5 from '../../static/images/pattern5.jpg'
+import pattern6 from '../../static/images/pattern6.jpg'
 
 
 function BackgroundCard(props) {
@@ -30,6 +34,18 @@ function BackgroundCard(props) {
                 break
             case 2:
                 setImage(pattern2)
+                break
+            case 3:
+                setImage(pattern3)
+                break
+            case 4:
+                setImage(pattern4)
+                break
+            case 5:
+                setImage(pattern5)
+                break
+            case 6:
+                setImage(pattern6)
                 break
             default:
                 setImage()
@@ -75,7 +91,7 @@ function BackgroundSelector() {
     axiosGet('background-selector').then(res => setInitialBackground(res.data))
   })
 
-  const options = ['0', '1', '2']
+  const options = ['0', '1', '2', '3', '4', '5', '6']
   
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "background",

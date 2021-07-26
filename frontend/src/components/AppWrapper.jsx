@@ -5,6 +5,10 @@ import { Box, Container } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import pattern1 from '../static/images/pattern1.jpg'
 import pattern2 from '../static/images/pattern2.jpg'
+import pattern3 from '../static/images/pattern3.jpg'
+import pattern4 from '../static/images/pattern4.jpg'
+import pattern5 from '../static/images/pattern5.jpg'
+import pattern6 from '../static/images/pattern6.jpg'
 
 const AppWrapper = ({page}) => {
     const [background, setBackground] = useState()
@@ -21,6 +25,18 @@ const AppWrapper = ({page}) => {
                 break
             case 2:
                 setBackground(pattern2)
+                break
+            case 3:
+                setBackground(pattern3)
+                break
+            case 4:
+                setBackground(pattern4)
+                break
+            case 5:
+                setBackground(pattern5)
+                break
+            case 6:
+                setBackground(pattern6)
                 break
             default:
                 setBackground(null)
