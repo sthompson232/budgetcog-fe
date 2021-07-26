@@ -44,15 +44,15 @@ const AppWrapper = ({page}) => {
     }, [backgroundId])
 
     return (
-        <div>
+        <Box>
             <Sidebar variant={variant}/>
-                <Box ml={variant === 'sidebar' ? 320 : 0} className='background-image' bg={!background ? 'gray.100' : ''} 
-                backgroundImage={background} p={6}>
-                    <Container maxW='1600px' px={0}>
-                        {page}
-                    </Container>
-                </Box>
-        </div>
+            <Box ml={variant === 'sidebar' ? 320 : 0} className='background-image' bg={!background ? 'gray.100' : ''} 
+            backgroundImage={background} p={6}>
+                <Container maxW='1600px' px={0}>
+                    {page}
+                </Container>
+            </Box>
+        </Box>
     )
 }
 

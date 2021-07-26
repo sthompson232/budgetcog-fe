@@ -9,12 +9,12 @@ import {
 import { axiosGet, axiosPost } from '../../utils/axios'
 import { useDispatch } from 'react-redux'
 import { setBackground } from '../../redux/actions/user'
-import pattern1 from '../../static/images/pattern1.jpg'
-import pattern2 from '../../static/images/pattern2.jpg'
-import pattern3 from '../../static/images/pattern3.jpg'
-import pattern4 from '../../static/images/pattern4.jpg'
-import pattern5 from '../../static/images/pattern5.jpg'
-import pattern6 from '../../static/images/pattern6.jpg'
+import pattern1 from '../../static/images/pattern1-thumbnail.jpg'
+import pattern2 from '../../static/images/pattern2-thumbnail.jpg'
+import pattern3 from '../../static/images/pattern3-thumbnail.jpg'
+import pattern4 from '../../static/images/pattern4-thumbnail.jpg'
+import pattern5 from '../../static/images/pattern5-thumbnail.jpg'
+import pattern6 from '../../static/images/pattern6-thumbnail.jpg'
 
 
 function BackgroundCard(props) {
