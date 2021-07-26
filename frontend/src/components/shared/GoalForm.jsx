@@ -27,7 +27,7 @@ const GoalForm = () => {
 
     return (
         <Box my={6}>
-            <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Set your goal</Heading>
+            <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Set your savings goal</Heading>
             <NumberInput
                 maxWidth='400px'
                 onChange={(valueString) => setValue(parse(valueString))}

@@ -68,7 +68,7 @@ function ColorSelector() {
 
   return (
     <Box my={6}>
-      <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Choose your theme</Heading>
+      <Heading className="headings" size={'lg'} fontWeight={700} mb={4}>Choose your colour theme</Heading>
       <HStack {...group} flexWrap='wrap' justifyContent='start'>
         {options.map((value) => {
           const radio = getRadioProps({ value })

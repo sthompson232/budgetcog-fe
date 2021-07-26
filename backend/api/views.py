@@ -185,6 +185,21 @@ class UserProfile(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class IsNewUser(APIView):
+
+    def get(self, request):
+        is_new = request.user.profile.new_user 
+        return Response(is_new, status=status.HTTP_200_OK)
+
+
+class SetNewUser(APIView):
+
+    def get(self, request):
+        request.user.profile.new_user = False 
+        request.user.profile.save()
+        return Response(status=status.HTTP_200_OK) 
+
+
 class Budget(APIView):
 
     def post(self, request):

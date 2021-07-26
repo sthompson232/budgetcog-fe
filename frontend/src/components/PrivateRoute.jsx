@@ -5,7 +5,7 @@ import AppWrapper from './AppWrapper'
 
 
 const PrivateRoute = ({ page, ...rest }) => {
-const isAuthenticated = useSelector((state) => {return state.user.isAuthenticated})
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated)
 
   return (
     <Route

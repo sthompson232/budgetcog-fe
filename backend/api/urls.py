@@ -3,6 +3,9 @@ from . import views
 
 urlpatterns = [
     path('user-profile/', views.UserProfile.as_view(), name='user-profile'),
+    path('is-new-user/', views.IsNewUser.as_view(), name='is-new-user'),
+    path('set-new-user/', views.SetNewUser.as_view(), name='set-new-user'),
+    
     path('budget/', views.Budget.as_view(), name='budget'),
     path('goal/', views.Goal.as_view(), name='goal'),
     path('get-total-saved/', views.GetTotalSaved.as_view(), name='get-total-saved'),

@@ -58,6 +58,7 @@ class Profile(models.Model):
   background = models.IntegerField(default=2)
   goal = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
   budget = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+  new_user = models.BooleanField(default=True)
 
   def __str__(self):
     return self.user.email
