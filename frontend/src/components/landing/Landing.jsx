@@ -16,6 +16,7 @@ import {
     ModalCloseButton,
     useDisclosure,
   } from '@chakra-ui/react'
+  import { Link as RouterLink } from 'react-router-dom'
 import Navbar from './Navbar'
 
 
@@ -48,9 +49,11 @@ const Landing = () => {
                             Use BudgetCog to manage and track your monthly expenses all in one place.
                         </Text>
                         <Flex justifyContent={'center'} flexWrap='wrap'>
-                            <Button onClick={onOpen} colorScheme="cyan" boxShadow="md" size="lg" mx={8} mb={4} px={16}>
-                                <Text color="white">Get Started</Text>
-                            </Button>
+                            <RouterLink to='/dashboard'>
+                                <Button onClick={onOpen} colorScheme="cyan" boxShadow="md" size="lg" mx={8} mb={4} px={16}>
+                                    <Text color="white">Get Started</Text>
+                                </Button>
+                            </RouterLink>
                             <Modal
                                 isCentered
                                 isOpen={isOpen}

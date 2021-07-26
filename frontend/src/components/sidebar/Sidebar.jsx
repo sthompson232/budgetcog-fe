@@ -34,7 +34,7 @@ const Sidebar = ({ variant }) => {
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">
             <Flex justifyContent="space-between">
-              <RouterLink to='/'>
+              <RouterLink to='/dashboard'>
                 <Image htmlWidth={180} src={logo} pt={1} />
               </RouterLink>
               <CloseButton onClick={onClose} />
@@ -61,7 +61,7 @@ const Sidebar = ({ variant }) => {
       h="100%"
       bg="gray.50"
     >
-      <RouterLink to='/'>
+      <RouterLink to='/dashboard'>
         <Image htmlWidth={180} src={logo} pb={3} />
       </RouterLink>
         <hr />

@@ -1,7 +1,6 @@
-import { useSelector } from "react-redux"
 import Landing from './components/landing/Landing'
 import Dashboard from './components/dashboard/Dashboard'
-import AppWrapper from './components/AppWrapper'
+import PrivateRoute from './components/PrivateRoute'
 import Settings from './components/settings/Settings'
 import ThisMonth from "./components/thismonth/ThisMonth"
 import PastMonths from "./components/pastmonths/PastMonths"
@@ -15,34 +14,36 @@ import {
 
 
 const App = () => {
-  let isAuthenticated = useSelector((state) => {return state.user.isAuthenticated})
+
 
   return (
     <div className="App">
       <Router>
-        {isAuthenticated ? 
           <Switch>
             <Route exact path="/">
-              <AppWrapper page={<Dashboard />} />
+              <Landing />
+            </Route>
+            <Route exact path="/dashboard">
+              <PrivateRoute page={<Dashboard />} />
             </Route>
             <Route exact path="/settings">
-              <AppWrapper page={<Settings />} />
+              <PrivateRoute page={<Settings />} />
             </Route>
             <Route exact path="/month/:month/:year">
-              <AppWrapper page={<ThisMonth />} />
+              <PrivateRoute page={<ThisMonth />} />
             </Route>
             <Route exact path="/past-months">
-              <AppWrapper page={<PastMonths />} />
+              <PrivateRoute page={<PastMonths />} />
             </Route>
             <Route exact path="/add-expense/:month/:year">
-              <AppWrapper page={<AddExpense />} />
+              <PrivateRoute page={<AddExpense />} />
             </Route>
             <Route exact path="/add-recurring-expense">
-              <AppWrapper page={<AddRecurringExpense />} />
+              <PrivateRoute page={<AddRecurringExpense />} />
             </Route>
           </Switch>
-        :
-        <Landing />}
+        
+
       </Router>
     </div>
   );

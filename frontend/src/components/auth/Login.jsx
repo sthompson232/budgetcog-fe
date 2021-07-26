@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { login } from '../../redux/actions/user'
 import googleLogin from './googleLogin';
 import { axiosGet } from '../../utils/axios'
+import { Redirect } from 'react-router-dom'
 
 const clientId = "410529829748-gu4huem6ecau5ni1mnn4fcq7rcmm9qmh.apps.googleusercontent.com";
 
@@ -18,7 +19,8 @@ function Login() {
 
   const onSuccess = (res) => {
     googleLogin(res.accessToken)
-    loginDispatch(res)
+    loginDispatch(res);
+    <Redirect to={{ pathname: '/dashboard' }} />
   };
 
   const onFailure = (res) => {
