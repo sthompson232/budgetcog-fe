@@ -8,11 +8,12 @@ import {
 } from '@chakra-ui/react'
 import Navbar from './Navbar'
 import Login from '../auth/Login'
+import pattern2 from '../../static/images/pattern4.jpg'
 
 
 const LoginPage = () => {
     return (
-    <Box>
+    <Box className='background-image' backgroundImage={pattern2} minHeight='100vh'>
         <Navbar />
         <Container maxW={'md'}>
         <Stack 
