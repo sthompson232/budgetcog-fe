@@ -50,21 +50,24 @@ class RecurringExpenses(APIView):
 class NewRecurringExpense(APIView):
 
     def post(self, request):
-        category = Category.objects.get(name=request.data['category'])
-        expense = Expense.objects.create(
-            name = request.data['name'],
-            cost = request.data['cost'],
-            category = category,
-            recurring = True,
-            user = request.user
-            )
-        expense.save()
-        month, year = get_month_and_year()
-        month = Month.objects.get(month=month, year=year, user=request.user)
-        month.expense_total += Decimal(request.data['cost'])
-        month.save()
-        print(request.data)
-        return Response(status=status.HTTP_200_OK)
+        if request.data['name'] and request.data['cost'] and request.data['category']:
+            category = Category.objects.get(name=request.data['category'])
+            expense = Expense.objects.create(
+                name = request.data['name'],
+                cost = request.data['cost'],
+                category = category,
+                recurring = True,
+                user = request.user
+                )
+            expense.save()
+            month, year = get_month_and_year()
+            month = Month.objects.get(month=month, year=year, user=request.user)
+            month.expense_total += Decimal(request.data['cost'])
+            month.save()
+            print(request.data)
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class UpdateExpense(APIView):
@@ -87,25 +90,28 @@ class UpdateExpense(APIView):
 class NewExpense(APIView):
 
     def post(self, request):
-        month = Month.objects.get(user=request.user, month=request.data['month'], year=request.data['year'])
-        category = Category.objects.get(name=request.data['category'])
-        if request.data['date']:
-            date = datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000))
+        if request.data['name'] and request.data['cost'] and request.data['category']:
+            month = Month.objects.get(user=request.user, month=request.data['month'], year=request.data['year'])
+            category = Category.objects.get(name=request.data['category'])
+            if request.data['date']:
+                date = datetime.datetime.fromtimestamp(int(request.data['date']) / float(1000))
+            else:
+                date = None
+            expense = Expense.objects.create(
+                name=request.data['name'],
+                date=date,
+                cost=request.data['cost'],
+                month=month,
+                user=request.user,
+                recurring=False,
+                category=category
+            )
+            expense.save()
+            month.expense_total += Decimal(request.data['cost'])
+            month.save()
+            return Response(status=status.HTTP_200_OK)
         else:
-            date = None
-        expense = Expense.objects.create(
-            name=request.data['name'],
-            date=date,
-            cost=request.data['cost'],
-            month=month,
-            user=request.user,
-            recurring=False,
-            category=category
-        )
-        expense.save()
-        month.expense_total += Decimal(request.data['cost'])
-        month.save()
-        return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class DeleteExpense(APIView):

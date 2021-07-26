@@ -29,23 +29,29 @@ const AddExpense = () => {
     const [cost, setCost] = useState(0)
     const [submitting, setSubmitting] = useState(false)
     const { month, year } = getMonthAndYear()
+    const [completed, setCompleted] = useState(false)
 
     const format = (val) => `£` + val
     const parse = (val) => val.replace(/^£/, "")
 
     const submitForm = () => {
-        setSubmitting(true)
-        axiosPost('new-recurring-expense/', {
-            "name": name,
-            "cost": cost,
-            "category": category
-        })
-        .then(() => setSubmitting(false))
-        .then(() => {
-            setName('');
-            setCost(0);
-        })
-        .then(() => history.push(`/month/${month}/${year}`))
+        if (name && cost && category) {
+            setSubmitting(true)
+            axiosPost('new-recurring-expense/', {
+                "name": name,
+                "cost": cost,
+                "category": category
+            })
+            .then(() => setSubmitting(false))
+            .then(() => {
+                setName('');
+                setCost(0);
+                setCompleted(false);
+            })
+            .then(() => history.push(`/month/${month}/${year}`))
+        } else {
+            setCompleted(true)
+        }
     }
 
     useEffect(() => {
@@ -57,12 +63,12 @@ const AddExpense = () => {
             <Heading className="headings" size={'xl'} fontWeight={800} my={3}>Add a recurring expense</Heading>
             <hr />
             <Box py={4}> 
-                <FormControl isRequired isInvalid>
+                <FormControl isRequired isInvalid={completed ? (name ? false : true) : false}>
                     <FormLabel mt={2}>Expense Name</FormLabel>
                     <Input maxWidth={500} value={name} type="name" onChange={e => setName(e.target.value)} />
-                    <FormErrorMessage>Error message!</FormErrorMessage>
+                    <FormErrorMessage>Field Required</FormErrorMessage>
                 </FormControl>
-                <FormControl isRequired isInvalid>
+                <FormControl isRequired isInvalid={completed ? (cost ? false : true) : false}>
                     <FormLabel mt={2}>Expense cost</FormLabel>
                     <NumberInput
                         maxWidth='400px'
@@ -78,10 +84,10 @@ const AddExpense = () => {
                             <NumberDecrementStepper />
                         </NumberInputStepper>
                     </NumberInput>
-                    <FormErrorMessage>Error message!</FormErrorMessage>
+                    <FormErrorMessage>Field Required</FormErrorMessage>
                 </FormControl>
                 <Box mt={3}>
-                    <FormControl isRequired isInvalid>
+                    <FormControl isRequired isInvalid={completed ? (category ? false : true) : false}>
                         <FormLabel>Expense Category</FormLabel>
                         {categories &&
                         <Select maxWidth={500} value={category} onChange={e => setCategory(e.target.value)} placeholder="Select a category">
@@ -90,7 +96,7 @@ const AddExpense = () => {
                             ))}
                         </Select>
                         }
-                        <FormErrorMessage>Error message!</FormErrorMessage>
+                        <FormErrorMessage>Field Required</FormErrorMessage>
                     </FormControl>
                 </Box>
                 <Button 

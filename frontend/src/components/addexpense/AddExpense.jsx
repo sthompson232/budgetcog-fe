@@ -32,27 +32,33 @@ const AddExpense = () => {
     const [date, setDate] = useState(new Date(current_date.year, current_date.month - 1, 1).getTime())
     const [cost, setCost] = useState(0)
     const [submitting, setSubmitting] = useState(false)
+    const [completed, setCompleted] = useState(false)
 
     const format = (val) => `£` + val
     const parse = (val) => val.replace(/^£/, "")
 
     const submitForm = () => {
-        setSubmitting(true)
-        axiosPost('new-expense/', {
-            "month": current_date.month,
-            "year": current_date.year,
-            "name": name,
-            "date": date,
-            "cost": cost,
-            "category": category
-        })
-        .then(() => setSubmitting(false))
-        .then(() => {
-            setName('');
-            setDate(Date.now());
-            setCost(0);
-        })
-        .then(() => history.push(`/month/${current_date.month}/${current_date.year}`))
+        if (name && cost && category) {
+            setSubmitting(true)
+            axiosPost('new-expense/', {
+                "month": current_date.month,
+                "year": current_date.year,
+                "name": name,
+                "date": date,
+                "cost": cost,
+                "category": category
+            })
+            .then(() => setSubmitting(false))
+            .then(() => {
+                setName('');
+                setDate(Date.now());
+                setCost(0);
+                setCompleted(false);
+            })
+            .then(() => history.push(`/month/${current_date.month}/${current_date.year}`))
+        } else {
+            setCompleted(true)
+        }
     }
 
     useEffect(() => {
@@ -65,10 +71,10 @@ const AddExpense = () => {
             <hr />
             <Box py={4}>
                 <Heading className="headings" size={'xl'} fontWeight={800} my={3}>Add an Expense</Heading>
-                <FormControl isRequired isInvalid={name ? false : true}>
+                <FormControl isRequired isInvalid={completed ? (name ? false : true) : false}>
                     <FormLabel mt={2}>Expense Name</FormLabel>
                     <Input maxWidth={500} value={name} type="name" onChange={e => setName(e.target.value)} />
-                    <FormErrorMessage>Error message!</FormErrorMessage>
+                    <FormErrorMessage>Field Required</FormErrorMessage>
                 </FormControl>
                 <Box py={3}>
                     <FormLabel>Date of expense</FormLabel>
@@ -78,7 +84,7 @@ const AddExpense = () => {
                         onChange={(date) => setDate(Date.parse(date))} 
                     />
                 </Box>
-                <FormControl isRequired isInvalid>
+                <FormControl isRequired isInvalid={completed ? (cost ? false : true) : false}>
                     <FormLabel mt={2}>Expense cost</FormLabel>
                     <NumberInput
                         maxWidth='400px'
@@ -94,10 +100,10 @@ const AddExpense = () => {
                             <NumberDecrementStepper />
                         </NumberInputStepper>
                     </NumberInput>
-                    <FormErrorMessage>Error message!</FormErrorMessage>
+                    <FormErrorMessage>Field Required</FormErrorMessage>
                 </FormControl>
                 <Box mt={3}>
-                    <FormControl isRequired isInvalid>
+                    <FormControl isRequired isInvalid={completed ? (category ? false : true) : false}>
                         <FormLabel>Expense Category</FormLabel>
                         {categories &&
                         <Select maxWidth={500} value={category} onChange={e => setCategory(e.target.value)} placeholder="Select a category">
@@ -106,7 +112,7 @@ const AddExpense = () => {
                             ))}
                         </Select>
                         }
-                        <FormErrorMessage>Error message!</FormErrorMessage>
+                        <FormErrorMessage>Field Required</FormErrorMessage>
                     </FormControl>
                 </Box>
                 <Button 
