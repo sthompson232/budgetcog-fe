@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Box } from '@chakra-ui/react'
+import { 
+  Spinner,
+  Center 
+} from '@chakra-ui/react'
 import { Bar } from 'react-chartjs-2'
 import { getIconHexColor } from '../../utils/icons'
 
@@ -47,9 +50,13 @@ const PastMonthsBar = ({ months, color }) => {
       };
 
     return (
-        <Box p={4} bg='white' borderRadius={12} boxShadow='md'>
-            <Bar data={data} options={options} height={null} width={null} />
-        </Box>
+      <Center p={4} bg='white' borderRadius={12} boxShadow='md'>
+        {months ?
+          <Bar data={data} options={options} height={null} width={null} />
+        :
+          <Spinner size="xl" color={`${color}.500`} thickness="3px" />
+        }
+      </Center>
     )
 }
 

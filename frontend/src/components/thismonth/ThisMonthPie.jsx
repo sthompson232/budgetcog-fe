@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Box } from '@chakra-ui/react'
+import { 
+    Box,
+    Center,
+    Spinner
+} from '@chakra-ui/react'
 import { Pie } from 'react-chartjs-2'
 import { decimal_round } from '../../utils/sums'
 import { getIconColor, getIconHexColor } from '../../utils/icons'
+import { useSelector } from 'react-redux'
 
 
 const ThisMonthPie = ({ expenses, recurring }) => {
+    const color = useSelector(state => state.user.color)
     const [expenseName, setExpenseName] = useState([])
     const [expenseCost, setExpenseCost] = useState([])
     const [expenseColor, setExpenseColor] = useState([])
@@ -59,15 +65,15 @@ const ThisMonthPie = ({ expenses, recurring }) => {
       };
 
     return (
-        <>
-        {expenses &&
-        <Box p={4} bg='white' borderRadius={12} boxShadow='md' >
+        <Center p={4} bg='white' borderRadius={12} boxShadow='md' >
+        {expenses ?
             <Box className="chart-container">
                 <Pie data={data} />  
             </Box>
-        </Box>
+        :
+        <Spinner size="xl" color={`${color}.500`} thickness="3px" />
         }
-        </>
+        </Center>
     )
 }
 

@@ -4,7 +4,9 @@ import {
     Box,
     Heading,
     SimpleGrid,
-    Text
+    Text,
+    Spinner,
+    Flex
 } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { total_expense, calculate_percentage, decimal_round } from '../../utils/sums'
@@ -40,17 +42,25 @@ const ThisMonthProgress = ({ expenses, recurring }) => {
 
     return (
         <Box p={4} mb={6} bg='white' borderRadius={12} boxShadow='md'>
-            <SimpleGrid columns={[1, 1, 1, 2, 1, 2]} spacing={6} textAlign='center' p={4}>
-                <Box py={3} borderRadius={12} borderWidth="1px" boxShadow="sm">
-                    <Heading fontWeight={800} color={`${color}.500`} size={'2xl'}>£{spent}</Heading>
-                    <Text>spent this month</Text>
-                </Box>
-                <Box py={3} borderRadius={12} borderWidth="1px" boxShadow="sm">
-                    <Heading fontWeight={800} color={`${color}.500`} size={'2xl'}>£{remaining}</Heading>
-                    <Text>remaining this month</Text>
-                </Box>
-            </SimpleGrid>
-            <Progress colorScheme={color} height="60px" value={percent} borderRadius={12} mb={4} mt={8} />        
+            {expenses ?
+            <Box>
+                <SimpleGrid columns={[1, 1, 1, 2, 1, 2]} spacing={6} textAlign='center' p={4}>
+                    <Box py={3} borderRadius={12} borderWidth="1px" boxShadow="sm">
+                        <Heading fontWeight={800} color={`${color}.500`} size={'2xl'}>£{spent}</Heading>
+                        <Text>spent this month</Text>
+                    </Box>
+                    <Box py={3} borderRadius={12} borderWidth="1px" boxShadow="sm">
+                        <Heading fontWeight={800} color={`${color}.500`} size={'2xl'}>£{remaining}</Heading>
+                        <Text>remaining this month</Text>
+                    </Box>
+                </SimpleGrid>
+                <Progress colorScheme={color} height="60px" value={percent} borderRadius={12} mb={4} mt={8} /> 
+            </Box>
+            :
+            <Flex justifyContent='center'>
+                <Spinner size="xl" color={`${color}.500`} thickness="3px" />
+            </Flex>
+            }       
         </Box>
     )
 }
