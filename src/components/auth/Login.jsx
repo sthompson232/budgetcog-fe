@@ -12,17 +12,14 @@ function Login() {
   const dispatch = useDispatch()
   let history = useHistory()
 
-  async function loginDispatch(res) {
-    let response = await axiosGet('user-profile/')
-    console.log("response", response)
-    let profile = response.data
-    dispatch(login(res, profile))
+  function loginDispatch(res) {
+    console.log(res)
+    axiosGet('user-profile/').then(response => dispatch(login(res, response.data)))
   }
 
   const onSuccess = (res) => {
-    googleLogin(res.accessToken)
-    loginDispatch(res);
-    history.push('/dashboard')
+    googleLogin(res, loginDispatch)
+    // history.push('/dashboard')
   };
 
   const onFailure = (res) => {
