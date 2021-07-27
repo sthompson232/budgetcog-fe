@@ -13,6 +13,7 @@ const googleLogin = (res, loginDispatch) => {
 		.then((res) => {
 			localStorage.setItem('access_token', res.data.access_token);
 			localStorage.setItem('refresh_token', res.data.refresh_token);
+			console.log("tokens set in local storage")
 		})
 		.then(() => loginDispatch(res))
 };
