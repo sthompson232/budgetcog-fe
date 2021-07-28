@@ -1,5 +1,6 @@
 import axios from "axios";
 import { url } from '../../url'
+import { CLIENT_ID, CLIENT_SECRET } from "../../url";
 
 const googleLogin = (res, loginDispatch) => {
 	axios
@@ -7,8 +8,8 @@ const googleLogin = (res, loginDispatch) => {
 			token: res.accessToken,
 			backend: 'google-oauth2',
 			grant_type: 'convert_token',
-			client_id: 'n8ybXtVncyyicPxwl3sB9IafpbPlf7PZkHgm7oHe',
-			client_secret: 'wLvk1IRz67wnMSLEKujmktDFgT2Hp3s9LfZk6qC3VeUAsWFPHRv2XzCq2JPDLFYSblJsseGRzwhYXWlUdt1L638LqfmK9UeOygpX4sOtg9Wr7gNQhX4MCB5RoB1Nf5vJ',
+			client_id: CLIENT_ID,
+			client_secret: CLIENT_SECRET,
 		})
 		.then((res) => {
 			localStorage.setItem('access_token', res.data.access_token);
