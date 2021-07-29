@@ -2,7 +2,7 @@ import axios from "axios";
 import { url } from '../../url'
 import { CLIENT_ID, CLIENT_SECRET } from "../../url";
 
-const googleLogin = (res, loginDispatch) => {
+const fetchGoogleTokens = (res) => {
 	axios
 		.post(`${url}/auth/convert-token`, {
 			token: res.accessToken,
@@ -14,9 +14,7 @@ const googleLogin = (res, loginDispatch) => {
 		.then((res) => {
 			localStorage.setItem('access_token', res.data.access_token);
 			localStorage.setItem('refresh_token', res.data.refresh_token);
-			console.log("tokens set in local storage")
 		})
-		.then(() => loginDispatch(res))
 };
 
-export default googleLogin;
+export default fetchGoogleTokens;

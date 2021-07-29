@@ -12,6 +12,7 @@ import pattern5 from '../static/images/pattern5.jpg'
 import pattern6 from '../static/images/pattern6.jpg'
 import { axiosGet } from '../utils/axios'
 
+
 const AppWrapper = ({page}) => {
     const [background, setBackground] = useState()
     const [newUser, setNewUser] = useState()

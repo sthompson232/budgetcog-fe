@@ -22,10 +22,14 @@ const userReducer = (state = initialState, action) => {
                 email: action.payload.profileObj.email,
                 imageUrl: action.payload.profileObj.imageUrl,
                 isAuthenticated: true,
+            };
+        case 'UPDATE_PROFILE':
+            return {
+                ...state,
                 color: action.profile.color,
                 background: action.profile.background,
                 budget: action.profile.budget
-            };
+            }
         case 'LOGOUT':
             return {
                 ...state,

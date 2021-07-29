@@ -8,20 +8,40 @@ import {
     Text,
     Button,
     Link,
-    Image
+    Image,
+    Alert,
+    AlertIcon
   } from '@chakra-ui/react'
   import { Link as RouterLink } from 'react-router-dom'
 import Navbar from './Navbar'
 import dashboard from '../../static/images/dashboard.png'
 import settings from '../../static/images/settings.png'
 import current from '../../static/images/current.png'
+import { useSelector, useDispatch } from 'react-redux'
+import { axiosGet } from '../../utils/axios'
+import { updateProfile } from '../../redux/actions/user'
+import { useEffect } from 'react'
 
 
 const Landing = () => {
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            axiosGet('user-profile/').then(res => dispatch(updateProfile(res.data)))
+        }
+    }, [isAuthenticated, dispatch])
 
     return (
         <div>
             <Navbar />
+            {isAuthenticated &&
+            <Alert status="error">
+                <AlertIcon />
+                Please refresh your browser upon login, then click 'Get Started', otherwise the app will not work properly! I am working to fix this bug!
+            </Alert>
+            }
             <Container maxW={'5xl'}>
                 <Flex
                     className='hero-section'
@@ -45,11 +65,19 @@ const Landing = () => {
                             Use BudgetCog to manage and track your monthly expenses all in one place.
                         </Text>
                         <Flex justifyContent={'center'} flexWrap='wrap'>
+                            {isAuthenticated ?
                             <RouterLink to='/dashboard'>
                                 <Button colorScheme="cyan" boxShadow="md" size="lg" mx={8} mb={4} px={16}>
                                     <Text color="white">Get Started</Text>
                                 </Button>
                             </RouterLink>
+                            : 
+                            <RouterLink to='/login'>
+                                <Button colorScheme="cyan" boxShadow="md" size="lg" mx={8} mb={4} px={16}>
+                                    <Text color="white">Get Started</Text>
+                                </Button>
+                            </RouterLink>
+                            }
                             <Button boxShadow="md" size="lg" mx={8} mb={4} px={16}>
                                 <Text>Learn More</Text>
                             </Button>
@@ -63,11 +91,6 @@ const Landing = () => {
                     <Text fontSize={'2xl'} color={'gray.500'}>Track all of your data from the dashboard, with easy to understand graphs showing all of the most important data.</Text>
                 </Box>
                 <Image mb={12} borderRadius={12} src={dashboard} />
-                {/* <Box py={8}>
-                    <Heading size="md" className="sub-heading" color="cyan.400">DARK MODE</Heading>
-                    <Heading size="2xl" fontSize={{base: '2xl', sm: '4xl', md: '5xl'}} fontWeight={900} pb={2}>Dark mode included.</Heading>
-                    <Text fontSize={'xl'} color={'gray.500'}>Don't strain your eyes with a blindingly white screen at 2am! Dark mode is available for an easier on the eyes experience. Whether you're a night owl or staring at computers all day.</Text>
-                </Box> */}
                 <Box py={8}>
                     <Heading size="md" className="sub-heading" color="cyan.400">CUSTOMISATION</Heading>
                     <Heading size="2xl" fontSize={{base: '2xl', sm: '4xl', md: '6xl'}} fontWeight={900} pb={2}>Customise your space.</Heading>

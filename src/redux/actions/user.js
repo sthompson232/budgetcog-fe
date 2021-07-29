@@ -1,14 +1,20 @@
-export const login = (payload, profile) => {
+export const login = (payload) => {
     return {
         type: 'LOGIN',
-        payload: payload,
-        profile: profile
+        payload: payload
     }
 }
 
 export const logout = () => {
     return {
         type: 'LOGOUT',
+    }
+}
+
+export const updateProfile = (profile) => {
+    return {
+        type: 'UPDATE_PROFILE',
+        profile: profile
     }
 }
 
